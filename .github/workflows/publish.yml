@@ -32,8 +32,10 @@ jobs:
         uses: r-lib/actions/setup-tinytex@v2
 
       - name: Pre-install LaTeX packages used by quartable
+        # `longtable` and `array` are part of the `tools` collection
+        # (shipped in base LaTeX), not standalone tlmgr packages.
         run: |
-          tlmgr install longtable booktabs multirow array \
+          tlmgr install booktabs multirow \
                         koma-script babel-french fancyvrb \
                         listings xcolor titling
 
