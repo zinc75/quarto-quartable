@@ -1,0 +1,1635 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Eric Bavu">
+<meta name="dcterms.date" content="2026-05-09">
+
+<title>quartable test document</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="test_quartable_files/libs/clipboard/clipboard.min.js"></script>
+<script src="test_quartable_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="test_quartable_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="test_quartable_files/libs/quarto-html/popper.min.js"></script>
+<script src="test_quartable_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="test_quartable_files/libs/quarto-html/anchor.min.js"></script>
+<link href="test_quartable_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="test_quartable_files/libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="test_quartable_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="test_quartable_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="test_quartable_files/libs/bootstrap/bootstrap-3b1896eddc8589bc6244f4e1c31347fc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="test_quartable_files/libs/quarto-contrib/quartable-0.1.0/quartable.css" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul class="collapse">
+  <li><a href="#features" id="toc-features" class="nav-link active" data-scroll-target="#features"><span class="header-section-number">1</span> Features</a></li>
+  <li><a href="#midrule" id="toc-midrule" class="nav-link" data-scroll-target="#midrule"><span class="header-section-number">2</span> Midrule</a></li>
+  <li><a href="#cline-partial-horizontal-line" id="toc-cline-partial-horizontal-line" class="nav-link" data-scroll-target="#cline-partial-horizontal-line"><span class="header-section-number">3</span> Cline (partial horizontal line)</a>
+  <ul class="collapse">
+  <li><a href="#single-range" id="toc-single-range" class="nav-link" data-scroll-target="#single-range"><span class="header-section-number">3.1</span> Single range</a></li>
+  <li><a href="#multiple-ranges" id="toc-multiple-ranges" class="nav-link" data-scroll-target="#multiple-ranges"><span class="header-section-number">3.2</span> Multiple ranges</a></li>
+  <li><a href="#mixed-ranges-and-single-columns" id="toc-mixed-ranges-and-single-columns" class="nav-link" data-scroll-target="#mixed-ranges-and-single-columns"><span class="header-section-number">3.3</span> Mixed ranges and single columns</a></li>
+  </ul></li>
+  <li><a href="#colspan" id="toc-colspan" class="nav-link" data-scroll-target="#colspan"><span class="header-section-number">4</span> Colspan</a>
+  <ul class="collapse">
+  <li><a href="#colspan-in-the-header" id="toc-colspan-in-the-header" class="nav-link" data-scroll-target="#colspan-in-the-header"><span class="header-section-number">4.1</span> Colspan in the header</a></li>
+  <li><a href="#colspan-in-the-body" id="toc-colspan-in-the-body" class="nav-link" data-scroll-target="#colspan-in-the-body"><span class="header-section-number">4.2</span> Colspan in the body</a></li>
+  </ul></li>
+  <li><a href="#rowspan" id="toc-rowspan" class="nav-link" data-scroll-target="#rowspan"><span class="header-section-number">5</span> Rowspan</a>
+  <ul class="collapse">
+  <li><a href="#rowspan-in-the-body" id="toc-rowspan-in-the-body" class="nav-link" data-scroll-target="#rowspan-in-the-body"><span class="header-section-number">5.1</span> Rowspan in the body</a></li>
+  <li><a href="#rowspan-combined-with-colspan" id="toc-rowspan-combined-with-colspan" class="nav-link" data-scroll-target="#rowspan-combined-with-colspan"><span class="header-section-number">5.2</span> Rowspan combined with colspan</a></li>
+  </ul></li>
+  <li><a href="#midrule-rowspan" id="toc-midrule-rowspan" class="nav-link" data-scroll-target="#midrule-rowspan"><span class="header-section-number">6</span> Midrule + rowspan</a></li>
+  <li><a href="#full-table-colspan-rowspan-cline-midrule" id="toc-full-table-colspan-rowspan-cline-midrule" class="nav-link" data-scroll-target="#full-table-colspan-rowspan-cline-midrule"><span class="header-section-number">7</span> Full table — colspan + rowspan + cline + midrule</a></li>
+  <li><a href="#vlines-vertical-lines-latex-only" id="toc-vlines-vertical-lines-latex-only" class="nav-link" data-scroll-target="#vlines-vertical-lines-latex-only"><span class="header-section-number">8</span> Vlines (vertical lines, LaTeX only)</a>
+  <ul class="collapse">
+  <li><a href="#full-height-vline-.vr" id="toc-full-height-vline-.vr" class="nav-link" data-scroll-target="#full-height-vline-.vr"><span class="header-section-number">8.1</span> Full-height vline (<code>.vr</code>)</a></li>
+  <li><a href="#full-height-vlines-on-both-sides-.vl-.vr" id="toc-full-height-vlines-on-both-sides-.vl-.vr" class="nav-link" data-scroll-target="#full-height-vlines-on-both-sides-.vl-.vr"><span class="header-section-number">8.2</span> Full-height vlines on both sides (<code>.vl .vr</code>)</a></li>
+  <li><a href="#vline-limited-with-rspank" id="toc-vline-limited-with-rspank" class="nav-link" data-scroll-target="#vline-limited-with-rspank"><span class="header-section-number">8.3</span> Vline limited with <code>rspan=K</code></a></li>
+  <li><a href="#two-limited-vlines-at-different-positions" id="toc-two-limited-vlines-at-different-positions" class="nav-link" data-scroll-target="#two-limited-vlines-at-different-positions"><span class="header-section-number">8.4</span> Two limited vlines at different positions</a></li>
+  </ul></li>
+  <li><a href="#per-cell-alignment-override-alignlcr" id="toc-per-cell-alignment-override-alignlcr" class="nav-link" data-scroll-target="#per-cell-alignment-override-alignlcr"><span class="header-section-number">9</span> Per-cell alignment override (<code>align=l|c|r</code>)</a>
+  <ul class="collapse">
+  <li><a href="#override-on-regular-non-colspan-cells" id="toc-override-on-regular-non-colspan-cells" class="nav-link" data-scroll-target="#override-on-regular-non-colspan-cells"><span class="header-section-number">9.1</span> Override on regular (non-colspan) cells</a></li>
+  <li><a href="#override-on-colspan-cells" id="toc-override-on-colspan-cells" class="nav-link" data-scroll-target="#override-on-colspan-cells"><span class="header-section-number">9.2</span> Override on colspan cells</a></li>
+  <li><a href="#override-on-body-cells-of-a-numeric-column" id="toc-override-on-body-cells-of-a-numeric-column" class="nav-link" data-scroll-target="#override-on-body-cells-of-a-numeric-column"><span class="header-section-number">9.3</span> Override on body cells of a numeric column</a></li>
+  <li><a href="#combined-align-vline-on-a-colspan" id="toc-combined-align-vline-on-a-colspan" class="nav-link" data-scroll-target="#combined-align-vline-on-a-colspan"><span class="header-section-number">9.4</span> Combined: <code>align=</code> + vline on a colspan</a></li>
+  </ul></li>
+  <li><a href="#edge-cases" id="toc-edge-cases" class="nav-link" data-scroll-target="#edge-cases"><span class="header-section-number">10</span> Edge cases</a>
+  <ul class="collapse">
+  <li><a href="#explicit-empty-cell-after-a-colspan" id="toc-explicit-empty-cell-after-a-colspan" class="nav-link" data-scroll-target="#explicit-empty-cell-after-a-colspan"><span class="header-section-number">10.1</span> Explicit empty cell after a colspan</a></li>
+  <li><a href="#cs1-no-merge-normal-cell" id="toc-cs1-no-merge-normal-cell" class="nav-link" data-scroll-target="#cs1-no-merge-normal-cell"><span class="header-section-number">10.2</span> <code>cs=1</code> (no merge, normal cell)</a></li>
+  <li><a href="#expected-warning-rowspan-crossing-a-midrule" id="toc-expected-warning-rowspan-crossing-a-midrule" class="nav-link" data-scroll-target="#expected-warning-rowspan-crossing-a-midrule"><span class="header-section-number">10.3</span> Expected warning: rowspan crossing a midrule</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="test_quartable.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><code>quartable</code> test document</h1>
+<p class="subtitle lead">colspan · rowspan · midrule · cline · vline · align</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Eric Bavu </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">May 9, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="features" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Features</h1>
+<p><code>quartable</code> extends Markdown pipe tables with six constructs that Pandoc does not support natively. This document is <strong>self-documenting</strong>: each example shows the markdown source above its rendered output, so the rendered HTML / PDF / Reveal is itself a usage reference.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 39%">
+<col style="width: 60%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Markup</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>[text]{cs=N}</code></td>
+<td>merge <code>N</code> consecutive columns</td>
+</tr>
+<tr class="even">
+<td><code>[text]{rs=N}</code> + <code>^</code></td>
+<td>merge <code>N</code> consecutive rows (<code>^</code> marks the continuations)</td>
+</tr>
+<tr class="odd">
+<td><code>===</code></td>
+<td>full-width horizontal separator (booktabs <code>\midrule</code>)</td>
+</tr>
+<tr class="even">
+<td><code>===N-M</code>, <code>===N</code>, <code>===1,3-5,7</code></td>
+<td>partial horizontal separator (booktabs <code>\cmidrule</code>)</td>
+</tr>
+<tr class="odd">
+<td><code>[text]{cs=N .vl .vr rspan=K}</code></td>
+<td>vertical line(s) on a colspan boundary (LaTeX only)</td>
+</tr>
+<tr class="even">
+<td><code>[text]{align=l\|c\|r}</code></td>
+<td>per-cell alignment override (overrides Markdown col-spec)</td>
+</tr>
+</tbody>
+</table>
+<p>By design <code>quartable</code> does <strong>not</strong> draw an automatic head/body separator — write <code>===</code> (or <code>===N-M</code>) explicitly as the first body row when you want one. This matches booktabs’ philosophy of leaving that decision to the author, especially when the header contains column spans or row spans.</p>
+</section>
+<section id="midrule" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Midrule</h1>
+<p>A row whose first cell contains exactly <code>===</code> is replaced by a full-width horizontal separator. The very first <code>===</code> (sitting just under the header separator <code>|---|</code>) acts as the head/body divider; later <code>===</code> rows split the body into visually distinct groups.</p>
+<p><strong>Code:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Group <span class="pp">|</span> Value <span class="pp">|</span> Note   <span class="pp">|</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="pp">|-------|------:|--------|</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ===   <span class="pp">|</span>       <span class="pp">|</span>        <span class="pp">|</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> A     <span class="pp">|</span>    12 <span class="pp">|</span> first  <span class="pp">|</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> A     <span class="pp">|</span>     8 <span class="pp">|</span> second <span class="pp">|</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ===   <span class="pp">|</span>       <span class="pp">|</span>        <span class="pp">|</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> B     <span class="pp">|</span>    15 <span class="pp">|</span> third  <span class="pp">|</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> B     <span class="pp">|</span>     7 <span class="pp">|</span> fourth <span class="pp">|</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ===   <span class="pp">|</span>       <span class="pp">|</span>        <span class="pp">|</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> C     <span class="pp">|</span>    22 <span class="pp">|</span> fifth  <span class="pp">|</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Rendered:</strong></p>
+<table class="quartable quartable-head-sep caption-top table">
+<thead>
+<tr class="header">
+<th>Group</th>
+<th style="text-align: right;">Value</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td style="text-align: right;">12</td>
+<td>first</td>
+</tr>
+<tr class="even">
+<td>A</td>
+<td style="text-align: right;">8</td>
+<td>second</td>
+</tr>
+</tbody>
+<tbody>
+<tr class="odd">
+<td>B</td>
+<td style="text-align: right;">15</td>
+<td>third</td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td style="text-align: right;">7</td>
+<td>fourth</td>
+</tr>
+</tbody>
+<tbody>
+<tr class="odd">
+<td>C</td>
+<td style="text-align: right;">22</td>
+<td>fifth</td>
+</tr>
+</tbody>
+</table>
+<div style="page-break-after: always;"></div>
+</section>
+<section id="cline-partial-horizontal-line" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Cline (partial horizontal line)</h1>
+<p><code>===N-M</code> draws a partial line spanning columns <code>N..M</code> instead of a full midrule. A bare number <code>N</code> is shorthand for <code>N-N</code>. Multiple ranges and singletons can be combined with commas: <code>===1,3-5,7</code>.</p>
+<p>In LaTeX each range emits a booktabs <code>\cmidrule(l|r|lr){N-M}</code>; the trim option is chosen automatically based on adjacency to other ranges on the same line, so isolated segments keep the booktabs default <code>(lr)</code> look while adjacent segments drop the trim on the adjacent side. In HTML and Reveal, the <code>border-bottom</code> of the previous row’s cells is set on exactly the targeted columns.</p>
+<section id="single-range" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="single-range"><span class="header-section-number">3.1</span> Single range</h2>
+<p><strong>Code:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> A <span class="pp">|</span> B  <span class="pp">|</span> C  <span class="pp">|</span> D  <span class="pp">|</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|----|----|----|</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> === <span class="pp">|</span>   <span class="pp">|</span>    <span class="pp">|</span>    <span class="pp">|</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 1 <span class="pp">|</span> 2  <span class="pp">|</span> 3  <span class="pp">|</span> 4  <span class="pp">|</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 5 <span class="pp">|</span> 6  <span class="pp">|</span> 7  <span class="pp">|</span> 8  <span class="pp">|</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ===2-3 <span class="pp">|</span>  <span class="pp">|</span>  <span class="pp">|</span>    <span class="pp">|</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 9 <span class="pp">|</span> 10 <span class="pp">|</span> 11 <span class="pp">|</span> 12 <span class="pp">|</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Rendered:</strong></p>
+<table class="quartable quartable-head-sep caption-top table">
+<thead>
+<tr class="header">
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+</tr>
+<tr class="even">
+<td>5</td>
+<td class="quartable-cline-bottom">6</td>
+<td class="quartable-cline-bottom">7</td>
+<td>8</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>10</td>
+<td>11</td>
+<td>12</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="multiple-ranges" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="multiple-ranges"><span class="header-section-number">3.2</span> Multiple ranges</h2>
+<p><code>===1-2,4-5</code> produces two <code>\cmidrule</code> calls (cols 1–2 and 4–5), each at the same horizontal position, with a gap on the unmarked column.</p>
+<p><strong>Code:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> A <span class="pp">|</span> B  <span class="pp">|</span> C  <span class="pp">|</span> D <span class="pp">|</span> E  <span class="pp">|</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|----|----|---|----|</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> === <span class="pp">|</span>  <span class="pp">|</span>    <span class="pp">|</span>   <span class="pp">|</span>    <span class="pp">|</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 1 <span class="pp">|</span> 2  <span class="pp">|</span> 3  <span class="pp">|</span> 4 <span class="pp">|</span> 5  <span class="pp">|</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ===1-2,4-5 <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span>   <span class="pp">|</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 6 <span class="pp">|</span> 7  <span class="pp">|</span> 8  <span class="pp">|</span> 9 <span class="pp">|</span> 10 <span class="pp">|</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Rendered:</strong></p>
+<table class="quartable quartable-head-sep caption-top table">
+<thead>
+<tr class="header">
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+<th>E</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td class="quartable-cline-bottom">1</td>
+<td class="quartable-cline-bottom">2</td>
+<td>3</td>
+<td class="quartable-cline-bottom">4</td>
+<td class="quartable-cline-bottom">5</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>7</td>
+<td>8</td>
+<td>9</td>
+<td>10</td>
+</tr>
+</tbody>
+</table>
+<div style="page-break-after: always;"></div>
+</section>
+<section id="mixed-ranges-and-single-columns" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="mixed-ranges-and-single-columns"><span class="header-section-number">3.3</span> Mixed ranges and single columns</h2>
+<p><code>===1,3-4</code> mixes a single-column cline with a range. Adaptive trim: the single col on the left gets <code>(r)</code> only (right side touches the neighbour), so its segment keeps full width on the left.</p>
+<p><strong>Code:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> A   <span class="pp">|</span> B  <span class="pp">|</span> C  <span class="pp">|</span> D  <span class="pp">|</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="pp">|-----|----|----|----|</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> === <span class="pp">|</span>    <span class="pp">|</span>    <span class="pp">|</span>    <span class="pp">|</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 1   <span class="pp">|</span> 2  <span class="pp">|</span> 3  <span class="pp">|</span> 4  <span class="pp">|</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ===1,3-4 <span class="pp">|</span> <span class="pp">|</span> <span class="pp">|</span>    <span class="pp">|</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 5   <span class="pp">|</span> 6  <span class="pp">|</span> 7  <span class="pp">|</span> 8  <span class="pp">|</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Rendered:</strong></p>
+<table class="quartable quartable-head-sep caption-top table">
+<thead>
+<tr class="header">
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td class="quartable-cline-bottom">1</td>
+<td>2</td>
+<td class="quartable-cline-bottom">3</td>
+<td class="quartable-cline-bottom">4</td>
+</tr>
+<tr class="even">
+<td>5</td>
+<td>6</td>
+<td>7</td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="colspan" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Colspan</h1>
+<section id="colspan-in-the-header" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="colspan-in-the-header"><span class="header-section-number">4.1</span> Colspan in the header</h2>
+<p><code>[Measurements]{cs=3}</code> merges its cell with the next two empty placeholder cells. The <code>===2-4</code> row demonstrates a partial cline that underlines exactly the merged span — useful to visually anchor the spanned label above its sub-columns.</p>
+<p><strong>Code:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Item     <span class="pp">|</span> <span class="co">[</span><span class="ot">Measurements</span><span class="co">]</span>{cs=3} <span class="pp">|</span>       <span class="pp">|</span>       <span class="pp">|</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="pp">|----------|:--------------------:|:-----:|------:|</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ===      <span class="pp">|</span>                      <span class="pp">|</span>       <span class="pp">|</span>       <span class="pp">|</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span>          <span class="pp">|</span> T1                   <span class="pp">|</span> T2    <span class="pp">|</span>    T3 <span class="pp">|</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ===2-4   <span class="pp">|</span>                      <span class="pp">|</span>       <span class="pp">|</span>       <span class="pp">|</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Sample A <span class="pp">|</span> 42.1                 <span class="pp">|</span> 41.8  <span class="pp">|</span>  43.0 <span class="pp">|</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Sample B <span class="pp">|</span> 38.5                 <span class="pp">|</span> 39.1  <span class="pp">|</span>  37.9 <span class="pp">|</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Sample C <span class="pp">|</span> 51.2                 <span class="pp">|</span> 50.8  <span class="pp">|</span>  52.1 <span class="pp">|</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Rendered:</strong></p>
+<table class="quartable quartable-head-sep caption-top table">
+<thead>
+<tr class="header">
+<th>Item</th>
+<th colspan="3" style="text-align: center;">Measurements</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td class="quartable-cline-bottom" style="text-align: center;">T1</td>
+<td class="quartable-cline-bottom" style="text-align: center;">T2</td>
+<td class="quartable-cline-bottom" style="text-align: right;">T3</td>
+</tr>
+<tr class="even">
+<td>Sample A</td>
+<td style="text-align: center;">42.1</td>
+<td style="text-align: center;">41.8</td>
+<td style="text-align: right;">43.0</td>
+</tr>
+<tr class="odd">
+<td>Sample B</td>
+<td style="text-align: center;">38.5</td>
+<td style="text-align: center;">39.1</td>
+<td style="text-align: right;">37.9</td>
+</tr>
+<tr class="even">
+<td>Sample C</td>
+<td style="text-align: center;">51.2</td>
+<td style="text-align: center;">50.8</td>
+<td style="text-align: right;">52.1</td>
+</tr>
+</tbody>
+</table>
+<div style="page-break-after: always;"></div>
+</section>
+<section id="colspan-in-the-body" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="colspan-in-the-body"><span class="header-section-number">4.2</span> Colspan in the body</h2>
+<p>Colspan also works on body rows. Here each group label spans the first two columns; a <code>===1-2</code> cline under the label then underlines just the spanned columns, leaving the <code>Value</code> column intact.</p>
+<p><strong>Code:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Category        <span class="pp">|</span> Detail   <span class="pp">|</span> Value <span class="pp">|</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="pp">|-----------------|:--------:|------:|</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ===             <span class="pp">|</span>          <span class="pp">|</span>       <span class="pp">|</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Group 1</span><span class="co">]</span>{cs=2} <span class="pp">|</span>          <span class="pp">|</span>  18.3 <span class="pp">|</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ===1-2          <span class="pp">|</span>          <span class="pp">|</span>       <span class="pp">|</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Sub-cat. X      <span class="pp">|</span> $\alpha$ <span class="pp">|</span>  10.1 <span class="pp">|</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Sub-cat. Y      <span class="pp">|</span> $\beta$  <span class="pp">|</span>   8.2 <span class="pp">|</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ===             <span class="pp">|</span>          <span class="pp">|</span>       <span class="pp">|</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Group 2</span><span class="co">]</span>{cs=2} <span class="pp">|</span>          <span class="pp">|</span>  12.7 <span class="pp">|</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ===1-2          <span class="pp">|</span>          <span class="pp">|</span>       <span class="pp">|</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Sub-cat. X      <span class="pp">|</span> $\alpha$ <span class="pp">|</span>   7.4 <span class="pp">|</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Sub-cat. Y      <span class="pp">|</span> $\beta$  <span class="pp">|</span>   5.3 <span class="pp">|</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Rendered:</strong></p>
+<table class="quartable quartable-head-sep caption-top table">
+<thead>
+<tr class="header">
+<th>Category</th>
+<th style="text-align: center;">Detail</th>
+<th style="text-align: right;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td colspan="2" class="quartable-cline-bottom" style="text-align: center;">Group 1</td>
+<td style="text-align: right;">18.3</td>
+</tr>
+<tr class="even">
+<td>Sub-cat. X</td>
+<td style="text-align: center;"><span class="math inline">\(\alpha\)</span></td>
+<td style="text-align: right;">10.1</td>
+</tr>
+<tr class="odd">
+<td>Sub-cat. Y</td>
+<td style="text-align: center;"><span class="math inline">\(\beta\)</span></td>
+<td style="text-align: right;">8.2</td>
+</tr>
+</tbody>
+<tbody>
+<tr class="odd">
+<td colspan="2" class="quartable-cline-bottom" style="text-align: center;">Group 2</td>
+<td style="text-align: right;">12.7</td>
+</tr>
+<tr class="even">
+<td>Sub-cat. X</td>
+<td style="text-align: center;"><span class="math inline">\(\alpha\)</span></td>
+<td style="text-align: right;">7.4</td>
+</tr>
+<tr class="odd">
+<td>Sub-cat. Y</td>
+<td style="text-align: center;"><span class="math inline">\(\beta\)</span></td>
+<td style="text-align: right;">5.3</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="rowspan" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Rowspan</h1>
+<section id="rowspan-in-the-body" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="rowspan-in-the-body"><span class="header-section-number">5.1</span> Rowspan in the body</h2>
+<p><code>[Group A]{rs=3}</code> merges the cell with the next two rows in the same column. Continuation rows must put a single <code>^</code> (or an empty cell) at that column position so the column count of each row stays consistent.</p>
+<p><strong>Code:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Group           <span class="pp">|</span> Item <span class="pp">|</span> Value <span class="pp">|</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="pp">|-----------------|:----:|------:|</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ===             <span class="pp">|</span>      <span class="pp">|</span>       <span class="pp">|</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Group A</span><span class="co">]</span>{rs=3} <span class="pp">|</span> x1   <span class="pp">|</span>   5.2 <span class="pp">|</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ^               <span class="pp">|</span> x2   <span class="pp">|</span>   4.8 <span class="pp">|</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ^               <span class="pp">|</span> x3   <span class="pp">|</span>   6.1 <span class="pp">|</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ===             <span class="pp">|</span>      <span class="pp">|</span>       <span class="pp">|</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Group B</span><span class="co">]</span>{rs=2} <span class="pp">|</span> y1   <span class="pp">|</span>  20.0 <span class="pp">|</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ^               <span class="pp">|</span> y2   <span class="pp">|</span>  19.4 <span class="pp">|</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div style="page-break-after: always;"></div>
+<p><strong>Rendered:</strong></p>
+<table class="quartable quartable-head-sep caption-top table">
+<thead>
+<tr class="header">
+<th>Group</th>
+<th style="text-align: center;">Item</th>
+<th style="text-align: right;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td rowspan="3">Group A</td>
+<td style="text-align: center;">x1</td>
+<td style="text-align: right;">5.2</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">x2</td>
+<td style="text-align: right;">4.8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">x3</td>
+<td style="text-align: right;">6.1</td>
+</tr>
+</tbody>
+<tbody>
+<tr class="odd">
+<td rowspan="2">Group B</td>
+<td style="text-align: center;">y1</td>
+<td style="text-align: right;">20.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">y2</td>
+<td style="text-align: right;">19.4</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="rowspan-combined-with-colspan" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="rowspan-combined-with-colspan"><span class="header-section-number">5.2</span> Rowspan combined with colspan</h2>
+<p>A single cell can span both rows and columns at the same time (<code>{rs=2 cs=2}</code>). The continuation row uses <code>^</code> placeholders for all spanned columns.</p>
+<p><strong>Code:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Block A</span><span class="co">]</span>{rs=2 cs=2} <span class="pp">|</span>       <span class="pp">|</span> Value 1 <span class="pp">|</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="pp">|----------------------|-------|---------|</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ^                    <span class="pp">|</span> ^     <span class="pp">|</span> Value 2 <span class="pp">|</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ===                  <span class="pp">|</span>       <span class="pp">|</span>         <span class="pp">|</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Col 1                <span class="pp">|</span> Col 2 <span class="pp">|</span> Col 3   <span class="pp">|</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Rendered:</strong></p>
+<table class="quartable caption-top table">
+<tbody>
+<tr class="odd">
+<td colspan="2" rowspan="2" style="text-align: center;">Block A</td>
+<td>Value 1</td>
+</tr>
+<tr class="even">
+<td>Value 2</td>
+</tr>
+</tbody>
+<tbody>
+<tr class="odd">
+<td>Col 1</td>
+<td>Col 2</td>
+<td>Col 3</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="midrule-rowspan" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Midrule + rowspan</h1>
+<p><code>===</code> separates row groups, each containing its own rowspan. This is the typical academic-table pattern.</p>
+<p><strong>Code:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Condition        <span class="pp">|</span> Item <span class="pp">|</span> Score 1 <span class="pp">|</span> Score 2 <span class="pp">|</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="pp">|------------------|:----:|--------:|--------:|</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ===              <span class="pp">|</span>      <span class="pp">|</span>         <span class="pp">|</span>         <span class="pp">|</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Baseline</span><span class="co">]</span>{rs=3} <span class="pp">|</span> x1   <span class="pp">|</span>    0.71 <span class="pp">|</span>     2.1 <span class="pp">|</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ^                <span class="pp">|</span> x2   <span class="pp">|</span>    0.68 <span class="pp">|</span>     2.0 <span class="pp">|</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ^                <span class="pp">|</span> x3   <span class="pp">|</span>    0.74 <span class="pp">|</span>     2.3 <span class="pp">|</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ===              <span class="pp">|</span>      <span class="pp">|</span>         <span class="pp">|</span>         <span class="pp">|</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Improved</span><span class="co">]</span>{rs=3} <span class="pp">|</span> x1   <span class="pp">|</span>    0.89 <span class="pp">|</span>     3.4 <span class="pp">|</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ^                <span class="pp">|</span> x2   <span class="pp">|</span>    0.87 <span class="pp">|</span>     3.3 <span class="pp">|</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ^                <span class="pp">|</span> x3   <span class="pp">|</span>    0.91 <span class="pp">|</span>     3.6 <span class="pp">|</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div style="page-break-after: always;"></div>
+<p><strong>Rendered:</strong></p>
+<table class="quartable quartable-head-sep caption-top table">
+<thead>
+<tr class="header">
+<th>Condition</th>
+<th style="text-align: center;">Item</th>
+<th style="text-align: right;">Score 1</th>
+<th style="text-align: right;">Score 2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td rowspan="3">Baseline</td>
+<td style="text-align: center;">x1</td>
+<td style="text-align: right;">0.71</td>
+<td style="text-align: right;">2.1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">x2</td>
+<td style="text-align: right;">0.68</td>
+<td style="text-align: right;">2.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">x3</td>
+<td style="text-align: right;">0.74</td>
+<td style="text-align: right;">2.3</td>
+</tr>
+</tbody>
+<tbody>
+<tr class="odd">
+<td rowspan="3">Improved</td>
+<td style="text-align: center;">x1</td>
+<td style="text-align: right;">0.89</td>
+<td style="text-align: right;">3.4</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">x2</td>
+<td style="text-align: right;">0.87</td>
+<td style="text-align: right;">3.3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">x3</td>
+<td style="text-align: right;">0.91</td>
+<td style="text-align: right;">3.6</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="full-table-colspan-rowspan-cline-midrule" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Full table — colspan + rowspan + cline + midrule</h1>
+<p>A typical multi-feature table. The header pairs <code>[Method]{rs=2}</code> with two <code>cs=2</code> group labels (<code>Set A</code>, <code>Set B</code>), and the cline <code>===2-3,4-5</code> underlines each group’s two sub-columns in one shot. Row groups in the body are separated by <code>===</code> midrules.</p>
+<p><strong>Code:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Method</span><span class="co">]</span>{rs=2}       <span class="pp">|</span> <span class="co">[</span><span class="ot">Set A</span><span class="co">]</span>{cs=2} <span class="pp">|</span>           <span class="pp">|</span> <span class="co">[</span><span class="ot">Set B</span><span class="co">]</span>{cs=2} <span class="pp">|</span>           <span class="pp">|</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="pp">|----------------------|:-------------:|:---------:|:-------------:|----------:|</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ===2-3,4-5           <span class="pp">|</span>               <span class="pp">|</span>           <span class="pp">|</span>               <span class="pp">|</span>           <span class="pp">|</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span>                      <span class="pp">|</span> Score X       <span class="pp">|</span> Score Y   <span class="pp">|</span> Score X       <span class="pp">|</span>   Score Y <span class="pp">|</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ===                  <span class="pp">|</span>               <span class="pp">|</span>           <span class="pp">|</span>               <span class="pp">|</span>           <span class="pp">|</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Baseline             <span class="pp">|</span> 0.71          <span class="pp">|</span> 2.1       <span class="pp">|</span> 0.68          <span class="pp">|</span>       1.9 <span class="pp">|</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Wiener               <span class="pp">|</span> 0.82          <span class="pp">|</span> 2.8       <span class="pp">|</span> 0.79          <span class="pp">|</span>       2.6 <span class="pp">|</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ===                  <span class="pp">|</span>               <span class="pp">|</span>           <span class="pp">|</span>               <span class="pp">|</span>           <span class="pp">|</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> GAN-A                <span class="pp">|</span> 0.87          <span class="pp">|</span> 3.1       <span class="pp">|</span> 0.85          <span class="pp">|</span>       2.9 <span class="pp">|</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> GAN-B                <span class="pp">|</span> 0.91          <span class="pp">|</span> 3.5       <span class="pp">|</span> 0.89          <span class="pp">|</span>       3.3 <span class="pp">|</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ===                  <span class="pp">|</span>               <span class="pp">|</span>           <span class="pp">|</span>               <span class="pp">|</span>           <span class="pp">|</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">**Proposed**</span><span class="co">]</span>{rs=2} <span class="pp">|</span> **0.93**      | **3.7**   | **0.92**      |   **3.6** <span class="pp">|</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ^                    <span class="pp">|</span> *(large)*     | *(large)* | *(large)*     | *(large)* <span class="pp">|</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Rendered:</strong></p>
+<table class="quartable caption-top table">
+<colgroup>
+<col style="width: 29%">
+<col style="width: 20%">
+<col style="width: 14%">
+<col style="width: 20%">
+<col style="width: 14%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td rowspan="2">Method</td>
+<td colspan="2" class="quartable-cline-bottom" style="text-align: center;">Set A</td>
+<td colspan="2" class="quartable-cline-bottom" style="text-align: center;">Set B</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">Score X</td>
+<td style="text-align: center;">Score Y</td>
+<td style="text-align: right;">Score X</td>
+</tr>
+</tbody>
+<tbody>
+<tr class="odd">
+<td>Baseline</td>
+<td style="text-align: center;">0.71</td>
+<td style="text-align: center;">2.1</td>
+<td style="text-align: center;">0.68</td>
+<td style="text-align: right;">1.9</td>
+</tr>
+<tr class="even">
+<td>Wiener</td>
+<td style="text-align: center;">0.82</td>
+<td style="text-align: center;">2.8</td>
+<td style="text-align: center;">0.79</td>
+<td style="text-align: right;">2.6</td>
+</tr>
+</tbody>
+<tbody>
+<tr class="odd">
+<td>GAN-A</td>
+<td style="text-align: center;">0.87</td>
+<td style="text-align: center;">3.1</td>
+<td style="text-align: center;">0.85</td>
+<td style="text-align: right;">2.9</td>
+</tr>
+<tr class="even">
+<td>GAN-B</td>
+<td style="text-align: center;">0.91</td>
+<td style="text-align: center;">3.5</td>
+<td style="text-align: center;">0.89</td>
+<td style="text-align: right;">3.3</td>
+</tr>
+</tbody>
+<tbody>
+<tr class="odd">
+<td rowspan="2"><strong>Proposed</strong></td>
+<td style="text-align: center;"><strong>0.93</strong></td>
+<td style="text-align: center;"><strong>3.7</strong></td>
+<td style="text-align: center;"><strong>0.92</strong></td>
+<td style="text-align: right;"><strong>3.6</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><em>(large)</em></td>
+<td style="text-align: center;"><em>(large)</em></td>
+<td style="text-align: center;"><em>(large)</em></td>
+<td style="text-align: right;"><em>(large)</em></td>
+</tr>
+</tbody>
+</table>
+<div style="page-break-after: always;"></div>
+</section>
+<section id="vlines-vertical-lines-latex-only" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Vlines (vertical lines, LaTeX only)</h1>
+<p>Adding <code>.vl</code> and/or <code>.vr</code> to a cell draws a vertical line on that cell’s left and/or right edge (or, for a colspan cell, on the boundary of the merged span). By default the line spans the full table height; the optional <code>rspan=K</code> attribute limits it to the declaring row plus <code>K-1</code> rows below.</p>
+<blockquote class="blockquote">
+<p>Note: <code>.vl</code>/<code>.vr</code> are LaTeX-only in v0.1. HTML and Reveal silently ignore them.</p>
+</blockquote>
+<section id="full-height-vline-.vr" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="full-height-vline-.vr"><span class="header-section-number">8.1</span> Full-height vline (<code>.vr</code>)</h2>
+<p><strong>Code:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Item <span class="pp">|</span> <span class="co">[</span><span class="ot">Measurements</span><span class="co">]</span>{cs=2 .vr} <span class="pp">|</span>   <span class="pp">|</span> Note <span class="pp">|</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="pp">|------|:------------------------:|</span>:-:<span class="pp">|------|</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ===  <span class="pp">|</span>                          <span class="pp">|</span>   <span class="pp">|</span>      <span class="pp">|</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> A    <span class="pp">|</span> 1                        <span class="pp">|</span> 2 <span class="pp">|</span> foo  <span class="pp">|</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> B    <span class="pp">|</span> 3                        <span class="pp">|</span> 4 <span class="pp">|</span> bar  <span class="pp">|</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> C    <span class="pp">|</span> 5                        <span class="pp">|</span> 6 <span class="pp">|</span> baz  <span class="pp">|</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Rendered:</strong></p>
+<table class="quartable quartable-head-sep caption-top table">
+<thead>
+<tr class="header">
+<th>Item</th>
+<th colspan="2" style="text-align: center;" data-quartable-vr="full">Measurements</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">2</td>
+<td>foo</td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">4</td>
+<td>bar</td>
+</tr>
+<tr class="odd">
+<td>C</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">6</td>
+<td>baz</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="full-height-vlines-on-both-sides-.vl-.vr" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="full-height-vlines-on-both-sides-.vl-.vr"><span class="header-section-number">8.2</span> Full-height vlines on both sides (<code>.vl .vr</code>)</h2>
+<p><strong>Code:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Item <span class="pp">|</span> <span class="co">[</span><span class="ot">Measurements</span><span class="co">]</span>{cs=2 .vl .vr} <span class="pp">|</span>   <span class="pp">|</span> Note <span class="pp">|</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="pp">|------|:----------------------------:|</span>:-:<span class="pp">|------|</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ===  <span class="pp">|</span>                              <span class="pp">|</span>   <span class="pp">|</span>      <span class="pp">|</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> A    <span class="pp">|</span> 1                            <span class="pp">|</span> 2 <span class="pp">|</span> foo  <span class="pp">|</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> B    <span class="pp">|</span> 3                            <span class="pp">|</span> 4 <span class="pp">|</span> bar  <span class="pp">|</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Rendered:</strong></p>
+<table class="quartable quartable-head-sep caption-top table">
+<thead>
+<tr class="header">
+<th>Item</th>
+<th colspan="2" style="text-align: center;" data-quartable-vl="full" data-quartable-vr="full">Measurements</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">2</td>
+<td>foo</td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">4</td>
+<td>bar</td>
+</tr>
+</tbody>
+</table>
+<div style="page-break-after: always;"></div>
+</section>
+<section id="vline-limited-with-rspank" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="vline-limited-with-rspank"><span class="header-section-number">8.3</span> Vline limited with <code>rspan=K</code></h2>
+<p><code>.vl rspan=2</code> on the cell <code>3</code> draws a vline on its left edge for two rows. Rows above and below do not receive the vline.</p>
+<p><strong>Code:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Item <span class="pp">|</span> <span class="co">[</span><span class="ot">Measurements</span><span class="co">]</span>{cs=2} <span class="pp">|</span>   <span class="pp">|</span> Note <span class="pp">|</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="pp">|------|----------------------|---|------|</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ===  <span class="pp">|</span>                      <span class="pp">|</span>   <span class="pp">|</span>      <span class="pp">|</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> A    <span class="pp">|</span> 1                    <span class="pp">|</span> 2 <span class="pp">|</span> foo  <span class="pp">|</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> B    <span class="pp">|</span> <span class="co">[</span><span class="ot">3</span><span class="co">]</span>{.vl rspan=2}     <span class="pp">|</span> 4 <span class="pp">|</span> bar  <span class="pp">|</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> C    <span class="pp">|</span> 5                    <span class="pp">|</span> 6 <span class="pp">|</span> baz  <span class="pp">|</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> D    <span class="pp">|</span> 7                    <span class="pp">|</span> 8 <span class="pp">|</span> qux  <span class="pp">|</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Rendered:</strong></p>
+<table class="quartable quartable-head-sep caption-top table">
+<thead>
+<tr class="header">
+<th>Item</th>
+<th colspan="2" style="text-align: center;">Measurements</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td>1</td>
+<td>2</td>
+<td>foo</td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td data-quartable-vl="2">3</td>
+<td>4</td>
+<td>bar</td>
+</tr>
+<tr class="odd">
+<td>C</td>
+<td>5</td>
+<td>6</td>
+<td>baz</td>
+</tr>
+<tr class="even">
+<td>D</td>
+<td>7</td>
+<td>8</td>
+<td>qux</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="two-limited-vlines-at-different-positions" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="two-limited-vlines-at-different-positions"><span class="header-section-number">8.4</span> Two limited vlines at different positions</h2>
+<p><strong>Code:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> A <span class="pp">|</span> B <span class="pp">|</span> C                <span class="pp">|</span> D                <span class="pp">|</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|------------------|------------------|</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> F <span class="pp">|</span> G <span class="pp">|</span> <span class="co">[</span><span class="ot">H</span><span class="co">]</span>{.vl rspan=2} <span class="pp">|</span> I                <span class="pp">|</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> I <span class="pp">|</span> J <span class="pp">|</span> K                <span class="pp">|</span> <span class="co">[</span><span class="ot">L</span><span class="co">]</span>{.vl rspan=2} <span class="pp">|</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> M <span class="pp">|</span> N <span class="pp">|</span> O                <span class="pp">|</span> P                <span class="pp">|</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Rendered:</strong></p>
+<table class="quartable caption-top table">
+<thead>
+<tr class="header">
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>F</td>
+<td>G</td>
+<td data-quartable-vl="2">H</td>
+<td>I</td>
+</tr>
+<tr class="even">
+<td>I</td>
+<td>J</td>
+<td>K</td>
+<td data-quartable-vl="2">L</td>
+</tr>
+<tr class="odd">
+<td>M</td>
+<td>N</td>
+<td>O</td>
+<td>P</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="per-cell-alignment-override-alignlcr" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Per-cell alignment override (<code>align=l|c|r</code>)</h1>
+<p>The <code>align=</code> attribute forces an alignment on a single cell, overriding the column’s Markdown alignment. Both short (<code>l</code>, <code>c</code>, <code>r</code>) and long (<code>left</code>, <code>center</code>, <code>right</code>) values are accepted. Without <code>align=</code>, regular cells inherit the column alignment as usual; colspan cells default to centered.</p>
+<section id="override-on-regular-non-colspan-cells" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="override-on-regular-non-colspan-cells"><span class="header-section-number">9.1</span> Override on regular (non-colspan) cells</h2>
+<p>The <code>Value</code> column uses a right-aligned col-spec (<code>---:</code>). Body cells without <code>align=</code> follow that default; cells with explicit <code>align=</code> switch sides for that one cell only. To make the alignment visible, each row mixes a short value (<code>42</code>) with a longer phrase (<code>a longer phrase</code>) so the column is forced wider than any single cell content.</p>
+<div style="page-break-after: always;"></div>
+<p><strong>Code:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Description                 <span class="pp">|</span>                       Value <span class="pp">|</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="pp">|:----------------------------|----------------------------:|</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Default (inherits col)      <span class="pp">|</span>                          42 <span class="pp">|</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Default (inherits col)      <span class="pp">|</span>             a longer phrase <span class="pp">|</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Override <span class="in">`align=l`</span> (short)  <span class="pp">|</span> <span class="co">[</span><span class="ot">42</span><span class="co">]</span>{align=l}               <span class="pp">|</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Override <span class="in">`align=l`</span> (long)   <span class="pp">|</span> <span class="co">[</span><span class="ot">two words</span><span class="co">]</span>{align=l}  <span class="pp">|</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Override <span class="in">`align=c`</span> (short)  <span class="pp">|</span> <span class="co">[</span><span class="ot">42</span><span class="co">]</span>{align=c}               <span class="pp">|</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Override <span class="in">`align=c`</span> (long)   <span class="pp">|</span> <span class="co">[</span><span class="ot">two words</span><span class="co">]</span>{align=c}  <span class="pp">|</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Override <span class="in">`align=r`</span> (no-op)  <span class="pp">|</span> <span class="co">[</span><span class="ot">42</span><span class="co">]</span>{align=r}               <span class="pp">|</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Rendered:</strong></p>
+<table class="quartable caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Description</th>
+<th style="text-align: right;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Default (inherits col)</td>
+<td style="text-align: right;">42</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Default (inherits col)</td>
+<td style="text-align: right;">a longer phrase</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Override <code>align=l</code> (short)</td>
+<td style="text-align: left;" data-quartable-align="l">42</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Override <code>align=l</code> (long)</td>
+<td style="text-align: left;" data-quartable-align="l">two words</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Override <code>align=c</code> (short)</td>
+<td style="text-align: center;" data-quartable-align="c">42</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Override <code>align=c</code> (long)</td>
+<td style="text-align: center;" data-quartable-align="c">two words</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Override <code>align=r</code> (no-op)</td>
+<td style="text-align: right;" data-quartable-align="r">42</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="override-on-colspan-cells" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="override-on-colspan-cells"><span class="header-section-number">9.2</span> Override on colspan cells</h2>
+<p><code>cs &gt; 1</code> cells default to centered. <code>align=</code> overrides that. The single-word colspan content (<code>grouped data</code>) is the same in all three rows — only the alignment changes — so the difference is purely positional within the merged span.</p>
+<p><strong>Code:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Step <span class="pp">|</span> A   <span class="pp">|</span> B   <span class="pp">|</span> Total <span class="pp">|</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="pp">|:-----|:---:|:---:|------:|</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ===  <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 1    <span class="pp">|</span> <span class="co">[</span><span class="ot">grouped data</span><span class="co">]</span>{cs=3}              <span class="pp">|</span>   <span class="pp">|</span>   <span class="pp">|</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 2    <span class="pp">|</span> <span class="co">[</span><span class="ot">grouped data</span><span class="co">]</span>{cs=3 align=l}      <span class="pp">|</span>   <span class="pp">|</span>   <span class="pp">|</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 3    <span class="pp">|</span> <span class="co">[</span><span class="ot">grouped data</span><span class="co">]</span>{cs=3 align=r}      <span class="pp">|</span>   <span class="pp">|</span>   <span class="pp">|</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ===2-4 <span class="pp">|</span>   <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 4    <span class="pp">|</span> 12  <span class="pp">|</span> 34  <span class="pp">|</span>   100 <span class="pp">|</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 5    <span class="pp">|</span> 78  <span class="pp">|</span> 90  <span class="pp">|</span>   200 <span class="pp">|</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 6    <span class="pp">|</span> 999 <span class="pp">|</span> 888 <span class="pp">|</span>  1234 <span class="pp">|</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Rendered:</strong></p>
+<table class="quartable quartable-head-sep caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Step</th>
+<th style="text-align: center;">A</th>
+<th style="text-align: center;">B</th>
+<th style="text-align: right;">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td colspan="3" style="text-align: center;">grouped data</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2</td>
+<td colspan="3" style="text-align: left;" data-quartable-align="l">grouped data</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3</td>
+<td colspan="3" class="quartable-cline-bottom" style="text-align: right;" data-quartable-align="r">grouped data</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">4</td>
+<td style="text-align: center;">12</td>
+<td style="text-align: center;">34</td>
+<td style="text-align: right;">100</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">5</td>
+<td style="text-align: center;">78</td>
+<td style="text-align: center;">90</td>
+<td style="text-align: right;">200</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">6</td>
+<td style="text-align: center;">999</td>
+<td style="text-align: center;">888</td>
+<td style="text-align: right;">1234</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="override-on-body-cells-of-a-numeric-column" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="override-on-body-cells-of-a-numeric-column"><span class="header-section-number">9.3</span> Override on body cells of a numeric column</h2>
+<p>A common real-world case: a value column is right-aligned for numbers, but a few rows carry a non-numeric note (e.g.&nbsp;<code>N/A</code>, <code>pending</code>) that reads better left- or center-aligned. <code>align=</code> lets you opt those specific cells out of the column default without affecting the rest.</p>
+<p><strong>Code:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Sample <span class="pp">|</span> Result                       <span class="pp">|</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="pp">|:-------|-----------------------------:|</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ===    <span class="pp">|</span>                              <span class="pp">|</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> s001   <span class="pp">|</span>                       1234.5 <span class="pp">|</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> s002   <span class="pp">|</span>                         98.7 <span class="pp">|</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> s003   <span class="pp">|</span> <span class="co">[</span><span class="ot">N/A</span><span class="co">]</span>{align=l}               <span class="pp">|</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> s004   <span class="pp">|</span>                        542.0 <span class="pp">|</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> s005   <span class="pp">|</span> <span class="co">[</span><span class="ot">pending review</span><span class="co">]</span>{align=c}    <span class="pp">|</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> s006   <span class="pp">|</span>                       7890.1 <span class="pp">|</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> s007   <span class="pp">|</span> <span class="co">[</span><span class="ot">aborted</span><span class="co">]</span>{align=l} <span class="pp">|</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Rendered:</strong></p>
+<table class="quartable quartable-head-sep caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Sample</th>
+<th style="text-align: right;">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">s001</td>
+<td style="text-align: right;">1234.5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">s002</td>
+<td style="text-align: right;">98.7</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">s003</td>
+<td style="text-align: left;" data-quartable-align="l">N/A</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">s004</td>
+<td style="text-align: right;">542.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">s005</td>
+<td style="text-align: center;" data-quartable-align="c">pending review</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">s006</td>
+<td style="text-align: right;">7890.1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">s007</td>
+<td style="text-align: left;" data-quartable-align="l">aborted</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="combined-align-vline-on-a-colspan" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="combined-align-vline-on-a-colspan"><span class="header-section-number">9.4</span> Combined: <code>align=</code> + vline on a colspan</h2>
+<p><code>align=</code> and the vline classes are independent and can be combined. Here the colspan cell is left-aligned AND carries a right-side vline that extends through both rows of the body.</p>
+<p><strong>Code:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Item <span class="pp">|</span> <span class="co">[</span><span class="ot">Forced left</span><span class="co">]</span>{cs=2 .vr align=l} <span class="pp">|</span>   <span class="pp">|</span> Note <span class="pp">|</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="pp">|------|---------------------------------|---|------|</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ===  <span class="pp">|</span>                                 <span class="pp">|</span>   <span class="pp">|</span>      <span class="pp">|</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> A    <span class="pp">|</span> 1                               <span class="pp">|</span> 2 <span class="pp">|</span> foo  <span class="pp">|</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> B    <span class="pp">|</span> 3                               <span class="pp">|</span> 4 <span class="pp">|</span> bar  <span class="pp">|</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Rendered:</strong></p>
+<table class="quartable quartable-head-sep caption-top table">
+<thead>
+<tr class="header">
+<th>Item</th>
+<th colspan="2" style="text-align: left;" data-quartable-vr="full" data-quartable-align="l">Forced left</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td>1</td>
+<td>2</td>
+<td>foo</td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td>3</td>
+<td>4</td>
+<td>bar</td>
+</tr>
+</tbody>
+</table>
+<div style="page-break-after: always;"></div>
+</section>
+</section>
+<section id="edge-cases" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Edge cases</h1>
+<section id="explicit-empty-cell-after-a-colspan" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="explicit-empty-cell-after-a-colspan"><span class="header-section-number">10.1</span> Explicit empty cell after a colspan</h2>
+<p>A reminder that colspan needs as many empty placeholder cells as there are extra columns spanned — Pandoc requires every row to have the same physical cell count.</p>
+<p><strong>Code:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Long title</span><span class="co">]</span>{cs=2} <span class="pp">|</span>   <span class="pp">|</span> Col C <span class="pp">|</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------------------|---|-------|</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ===                <span class="pp">|</span>   <span class="pp">|</span>       <span class="pp">|</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> a                  <span class="pp">|</span> b <span class="pp">|</span> c     <span class="pp">|</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Rendered:</strong></p>
+<table class="quartable quartable-head-sep caption-top table">
+<thead>
+<tr class="header">
+<th colspan="2" style="text-align: center;">Long title</th>
+<th>Col C</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>a</td>
+<td>b</td>
+<td>c</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="cs1-no-merge-normal-cell" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="cs1-no-merge-normal-cell"><span class="header-section-number">10.2</span> <code>cs=1</code> (no merge, normal cell)</h2>
+<p><code>cs=1</code> is a no-op: the cell takes its single natural column. Useful to assert that the attribute parses cleanly even when it doesn’t trigger any merge.</p>
+<p><strong>Code:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Normal</span><span class="co">]</span>{cs=1} <span class="pp">|</span> Other <span class="pp">|</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="pp">|----------------|-------|</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> val A          <span class="pp">|</span> val B <span class="pp">|</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Rendered:</strong></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Normal</th>
+<th>Other</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>val A</td>
+<td>val B</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="expected-warning-rowspan-crossing-a-midrule" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="expected-warning-rowspan-crossing-a-midrule"><span class="header-section-number">10.3</span> Expected warning: rowspan crossing a midrule</h2>
+<p>A rowspan that extends across a <code>===</code> separator is flagged at parse time (warning printed to stderr; the filter does not abort). HTML rendering remains correct; LaTeX rendering of this specific case is imperfect because <code>\multirow</code> cannot cross <code>\midrule</code> cleanly.</p>
+<p><strong>Code:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Group            <span class="pp">|</span> Value <span class="pp">|</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="pp">|------------------|------:|</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ===              <span class="pp">|</span>       <span class="pp">|</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">CONFLICT</span><span class="co">]</span>{rs=3} <span class="pp">|</span>     1 <span class="pp">|</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ^                <span class="pp">|</span>     2 <span class="pp">|</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ===              <span class="pp">|</span>       <span class="pp">|</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ^                <span class="pp">|</span>     3 <span class="pp">|</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div style="page-break-after: always;"></div>
+<p><strong>Rendered:</strong></p>
+<table class="quartable quartable-head-sep caption-top table">
+<thead>
+<tr class="header">
+<th>Group</th>
+<th style="text-align: right;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td rowspan="2">CONFLICT</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+</tr>
+</tbody>
+<tbody>
+<tr class="odd">
+<td>3</td>
+<td style="text-align: right;"></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
