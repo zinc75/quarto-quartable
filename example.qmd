@@ -1,0 +1,57 @@
+---
+title: "`quartable` example"
+filters:
+  - quartable
+format: pdf
+---
+
+A short example exercising the main `quartable` features. For the full
+self-documenting reference (every feature in HTML, PDF and Reveal),
+see `test_quartable.qmd` and `test_reveal_quartable.qmd`, or the
+[live documentation](https://zinc75.github.io/quarto-quartable/).
+
+## Column span, row span, midrules and clines
+
+```markdown
+| [Method]{rs=2}    | [Set A]{cs=2} |        | [Set B]{cs=2} |        |
+|-------------------|:-------------:|:------:|:-------------:|-------:|
+| ===2-3,4-5        |               |        |               |        |
+|                   | Score X       | Score Y| Score X       | Score Y|
+| ===               |               |        |               |        |
+| Baseline          | 0.71          | 2.1    | 0.68          |    1.9 |
+| Wiener            | 0.82          | 2.8    | 0.79          |    2.6 |
+| ===               |               |        |               |        |
+| **Proposed**      | **0.93**      | **3.7**| **0.92**      |**3.6** |
+```
+
+| [Method]{rs=2}    | [Set A]{cs=2} |        | [Set B]{cs=2} |        |
+|-------------------|:-------------:|:------:|:-------------:|-------:|
+| ===2-3,4-5        |               |        |               |        |
+|                   | Score X       | Score Y| Score X       | Score Y|
+| ===               |               |        |               |        |
+| Baseline          | 0.71          | 2.1    | 0.68          |    1.9 |
+| Wiener            | 0.82          | 2.8    | 0.79          |    2.6 |
+| ===               |               |        |               |        |
+| **Proposed**      | **0.93**      | **3.7**| **0.92**      |**3.6** |
+
+## Per-cell alignment override
+
+```markdown
+| Sample | Result                       |
+|:-------|-----------------------------:|
+| ===    |                              |
+| s001   |                       1234.5 |
+| s002   |                         98.7 |
+| s003   | [N/A]{align=l}               |
+| s004   |                        542.0 |
+| s005   | [pending review]{align=c}    |
+```
+
+| Sample | Result                       |
+|:-------|-----------------------------:|
+| ===    |                              |
+| s001   |                       1234.5 |
+| s002   |                         98.7 |
+| s003   | [N/A]{align=l}               |
+| s004   |                        542.0 |
+| s005   | [pending]{align=c}    |
