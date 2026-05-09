@@ -1,0 +1,364 @@
+---
+title: "`quartable` — Reveal.js demo"
+subtitle: "colspan · rowspan · midrule · cline · align"
+author: "Eric Bavu"
+date: today
+lang: en
+
+filters:
+  - quartable/quartable
+
+format:
+  revealjs:
+    theme: simple
+    slide-number: true
+    width: 1280
+    height: 720
+    smaller: true
+---
+
+## Features
+
+`quartable` extends Markdown pipe tables with six constructs. Each
+slide below shows the markdown source and the rendered table, so the
+deck doubles as a feature reference.
+
+| Markup                          | Effect                                                |
+|---------------------------------|-------------------------------------------------------|
+| `[text]{cs=N}`                  | merge `N` consecutive columns                         |
+| `[text]{rs=N}` + `^`            | merge `N` consecutive rows                            |
+| `===`                           | full-width horizontal separator                       |
+| `===N-M`, `===N`, `===1,3-5`    | partial horizontal separator (booktabs `\cmidrule`)   |
+| `[text]{cs=N .vl .vr rspan=K}`  | vertical line(s) on a colspan boundary (LaTeX only)   |
+| `[text]{align=l\|c\|r}`         | per-cell alignment override                           |
+
+> No automatic head/body separator: write `===` (or `===N-M`)
+> explicitly as the first body row when you want one.
+
+---
+
+## Midrule
+
+**Code:**
+
+```markdown
+| Group | Value | Note   |
+|-------|------:|--------|
+| ===   |       |        |
+| A     |    12 | first  |
+| A     |     8 | second |
+| ===   |       |        |
+| B     |    15 | third  |
+```
+
+**Rendered:**
+
+| Group | Value | Note   |
+|-------|------:|--------|
+| ===   |       |        |
+| A     |    12 | first  |
+| A     |     8 | second |
+| ===   |       |        |
+| B     |    15 | third  |
+
+---
+
+## Cline — single range (`===N-M`)
+
+**Code:**
+
+```markdown
+| A | B  | C  | D  |
+|---|----|----|----|
+| === |   |    |    |
+| 1 | 2  | 3  | 4  |
+| 5 | 6  | 7  | 8  |
+| ===2-3 |  |  |    |
+| 9 | 10 | 11 | 12 |
+```
+
+**Rendered:**
+
+| A | B  | C  | D  |
+|---|----|----|----|
+| === |   |    |    |
+| 1 | 2  | 3  | 4  |
+| 5 | 6  | 7  | 8  |
+| ===2-3 |  |  |    |
+| 9 | 10 | 11 | 12 |
+
+---
+
+## Cline — mixed ranges (`===1,3-4`)
+
+A bare `N` is shorthand for `N-N`. Mix with ranges using commas.
+
+**Code:**
+
+```markdown
+| A   | B  | C  | D  |
+|-----|----|----|----|
+| === |    |    |    |
+| 1   | 2  | 3  | 4  |
+| ===1,3-4 | | |    |
+| 5   | 6  | 7  | 8  |
+```
+
+**Rendered:**
+
+| A   | B  | C  | D  |
+|-----|----|----|----|
+| === |    |    |    |
+| 1   | 2  | 3  | 4  |
+| ===1,3-4 | | |    |
+| 5   | 6  | 7  | 8  |
+
+---
+
+## Colspan in the header
+
+**Code:**
+
+```markdown
+| Item | [Measurements]{cs=3} |       |       |
+|------|:--------------------:|:-----:|------:|
+| ===  |                      |       |       |
+|      | T1                   | T2    |    T3 |
+| ===2-4 |                    |       |       |
+| x1   | 0.71                 | 0.68  |  0.74 |
+| x2   | 0.69                 | 0.65  |  0.72 |
+```
+
+**Rendered:**
+
+| Item | [Measurements]{cs=3} |       |       |
+|------|:--------------------:|:-----:|------:|
+| ===  |                      |       |       |
+|      | T1                   | T2    |    T3 |
+| ===2-4 |                    |       |       |
+| x1   | 0.71                 | 0.68  |  0.74 |
+| x2   | 0.69                 | 0.65  |  0.72 |
+
+---
+
+## Colspan in the body
+
+**Code:**
+
+```markdown
+| Category        | Detail | Value |
+|-----------------|:------:|------:|
+| ===             |        |       |
+| [Group 1]{cs=2} |        |  18.3 |
+| ===1-2          |        |       |
+| Sub-cat. X      | alpha  |  10.1 |
+| Sub-cat. Y      | beta   |   8.2 |
+```
+
+**Rendered:**
+
+| Category        | Detail | Value |
+|-----------------|:------:|------:|
+| ===             |        |       |
+| [Group 1]{cs=2} |        |  18.3 |
+| ===1-2          |        |       |
+| Sub-cat. X      | alpha  |  10.1 |
+| Sub-cat. Y      | beta   |   8.2 |
+
+---
+
+## Rowspan in the body
+
+**Code:**
+
+```markdown
+| Condition        | Item | Score |
+|------------------|:----:|------:|
+| ===              |      |       |
+| [Baseline]{rs=3} | x1   |  0.71 |
+| ^                | x2   |  0.68 |
+| ^                | x3   |  0.74 |
+| [Improved]{rs=2} | x1   |  0.89 |
+| ^                | x2   |  0.87 |
+```
+
+**Rendered:**
+
+| Condition        | Item | Score |
+|------------------|:----:|------:|
+| ===              |      |       |
+| [Baseline]{rs=3} | x1   |  0.71 |
+| ^                | x2   |  0.68 |
+| ^                | x3   |  0.74 |
+| [Improved]{rs=2} | x1   |  0.89 |
+| ^                | x2   |  0.87 |
+
+---
+
+## Rowspan combined with colspan
+
+`{rs=N cs=M}` on a single cell. Continuation rows use `^`.
+
+**Code:**
+
+```markdown
+| [Block A]{rs=2 cs=2} |       | Value 1 |
+|----------------------|-------|---------|
+| ^                    | ^     | Value 2 |
+| ===                  |       |         |
+| Col 1                | Col 2 | Col 3   |
+```
+
+**Rendered:**
+
+| [Block A]{rs=2 cs=2} |       | Value 1 |
+|----------------------|-------|---------|
+| ^                    | ^     | Value 2 |
+| ===                  |       |         |
+| Col 1                | Col 2 | Col 3   |
+
+---
+
+## Full table — every feature combined
+
+**Code:**
+
+```markdown
+| [Method]{rs=2}    | [Set A]{cs=2} |        | [Set B]{cs=2} |       |
+|-------------------|:-------------:|:------:|:-------------:|------:|
+| ===2-3,4-5        |               |        |               |       |
+|                   | Score X       | Score Y| Score X       |Score Y|
+| ===               |               |        |               |       |
+| Baseline          | 0.71          | 2.1    | 0.68          |   1.9 |
+| Wiener            | 0.82          | 2.8    | 0.79          |   2.6 |
+| ===               |               |        |               |       |
+| **Proposed**      | **0.93**      | **3.7**| **0.92**      |**3.6**|
+```
+
+**Rendered:**
+
+| [Method]{rs=2}    | [Set A]{cs=2} |        | [Set B]{cs=2} |       |
+|-------------------|:-------------:|:------:|:-------------:|------:|
+| ===2-3,4-5        |               |        |               |       |
+|                   | Score X       | Score Y| Score X       |Score Y|
+| ===               |               |        |               |       |
+| Baseline          | 0.71          | 2.1    | 0.68          |   1.9 |
+| Wiener            | 0.82          | 2.8    | 0.79          |   2.6 |
+| ===               |               |        |               |       |
+| **Proposed**      | **0.93**      | **3.7**| **0.92**      |**3.6**|
+
+---
+
+## Per-cell alignment override (regular cells)
+
+`align=` overrides the column's Markdown alignment. Both short
+(`l`/`c`/`r`) and long (`left`/`center`/`right`) values work.
+
+**Code:**
+
+```markdown
+| Description    |                       Value |
+|:---------------|----------------------------:|
+| Default        |                          42 |
+| Default        |             a longer phrase |
+| `align=l`      | [42]{align=l}               |
+| `align=c`      | [two words]{align=c}  |
+```
+
+**Rendered:**
+
+| Description    |                       Value |
+|:---------------|----------------------------:|
+| Default        |                          42 |
+| Default        |             a longer phrase |
+| `align=l`      | [42]{align=l}               |
+| `align=c`      | [two words]{align=c}  |
+
+---
+
+## Per-cell alignment override (colspan cells)
+
+The `cs > 1` default is centered. `align=` overrides it.
+
+**Code:**
+
+```markdown
+| Step | A   | B   | Total |
+|:-----|:---:|:---:|------:|
+| ===  |     |     |       |
+| 1    | [data]{cs=3}              |   |   |
+| 2    | [data]{cs=3 align=l}      |   |   |
+| 3    | [data]{cs=3 align=r}      |   |   |
+| ===2-4 |   |     |       |
+| 4    | 12  | 34  |   100 |
+```
+
+**Rendered:**
+
+| Step | A   | B   | Total |
+|:-----|:---:|:---:|------:|
+| ===  |     |     |       |
+| 1    | [data]{cs=3}              |   |   |
+| 2    | [data]{cs=3 align=l}      |   |   |
+| 3    | [data]{cs=3 align=r}      |   |   |
+| ===2-4 |   |     |       |
+| 4    | 12  | 34  |   100 |
+
+---
+
+## Vlines — LaTeX only
+
+`.vl` and `.vr` draw vertical lines on a cell's left/right edge (or
+on the boundary of a colspan). `rspan=K` limits the line to `K` rows.
+
+> ⚠ Vlines are **LaTeX only** in v0.1. They do not render in HTML or
+> Reveal — see the corresponding section in the PDF test for the
+> visual.
+
+**Code:**
+
+```markdown
+| Item | [Measurements]{cs=2 .vr} |   | Note |
+|------|:------------------------:|:-:|------|
+| ===  |                          |   |      |
+| A    | 1                        | 2 | foo  |
+| B    | 3                        | 4 | bar  |
+```
+
+**Rendered:**
+
+| Item | [Measurements]{cs=2 .vr} |   | Note |
+|------|:------------------------:|:-:|------|
+| ===  |                          |   |      |
+| A    | 1                        | 2 | foo  |
+| B    | 3                        | 4 | bar  |
+
+---
+
+## Edge case — rowspan crossing a midrule
+
+The filter prints a stderr warning and renders the table as best as
+HTML/Reveal allow. (LaTeX rendering of this specific case is
+imperfect because `\multirow` cannot cross `\midrule` cleanly.)
+
+**Code:**
+
+```markdown
+| Group            | Value |
+|------------------|------:|
+| ===              |       |
+| [CONFLICT]{rs=3} |     1 |
+| ^                |     2 |
+| ===              |       |
+| ^                |     3 |
+```
+
+**Rendered:**
+
+| Group            | Value |
+|------------------|------:|
+| ===              |       |
+| [CONFLICT]{rs=3} |     1 |
+| ^                |     2 |
+| ===              |       |
+| ^                |     3 |

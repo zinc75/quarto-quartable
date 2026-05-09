@@ -1,0 +1,71 @@
+---
+title: "`quartable` — Quarto extension"
+subtitle: "Column spans · row spans · midrules · clines · vertical lines · per-cell alignment"
+filters:
+  - quartable/quartable
+format:
+  html:
+    theme: cosmo
+    toc: false
+---
+
+`quartable` extends Markdown pipe tables with constructs that Pandoc
+does not support natively, with a single source feeding HTML, Reveal.js
+and PDF/LaTeX. See the [README on GitHub](https://github.com/zinc75/quarto-quartable#readme)
+for the full syntax reference and compatibility matrix.
+
+## Live demos
+
+The same set of features is rendered in three formats below. Each
+example shows the **markdown source** above its **rendered output**,
+so the deck doubles as a feature reference.
+
+- [HTML demo](test_quartable.html) — full reference with code blocks
+- [PDF demo](test_quartable.pdf) — the same content rendered to LaTeX/PDF
+- [Reveal.js slides](test_reveal_quartable.html) — slide-format demo
+
+## Quick install
+
+```bash
+quarto add zinc75/quarto-quartable
+```
+
+Then enable in your document's YAML front matter:
+
+```yaml
+filters:
+  - quartable
+```
+
+## Quick example
+
+```markdown
+| Group           | Item | Score |
+|-----------------|------|------:|
+| ===             |      |       |
+| [Group A]{rs=3} | x1   |  5.2  |
+| ^               | x2   |  4.8  |
+| ^               | x3   |  6.1  |
+| ===             |      |       |
+| [Group B]{rs=2} | y1   | 20.0  |
+| ^               | y2   | 19.4  |
+```
+
+| Group           | Item | Score |
+|-----------------|------|------:|
+| ===             |      |       |
+| [Group A]{rs=3} | x1   |  5.2  |
+| ^               | x2   |  4.8  |
+| ^               | x3   |  6.1  |
+| ===             |      |       |
+| [Group B]{rs=2} | y1   | 20.0  |
+| ^               | y2   | 19.4  |
+
+## Project links
+
+- [GitHub repository](https://github.com/zinc75/quarto-quartable)
+- [Changelog](https://github.com/zinc75/quarto-quartable/blob/main/CHANGELOG.md)
+- [Contributing guide](https://github.com/zinc75/quarto-quartable/blob/main/CONTRIBUTING.md)
+- [Issues](https://github.com/zinc75/quarto-quartable/issues)
+
+Released under the [MIT License](https://github.com/zinc75/quarto-quartable/blob/main/LICENSE).

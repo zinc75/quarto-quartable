@@ -1,0 +1,36 @@
+# Quarto build artefacts
+/.quarto/
+*_files/
+*_cache/
+
+# LaTeX editor caches
+.texpadtmp/
+.latexmk/
+
+# Rendered outputs (kept out of the repo: regenerable from sources)
+*.html
+*.pdf
+*.docx
+
+# LaTeX intermediates (kept-tex output)
+*.tex
+*.log
+*.aux
+*.out
+*.toc
+*.fdb_latexmk
+*.fls
+*.synctex.gz
+# …but DO ship the extension's preamble
+!_extensions/**/*.tex
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# Make sure we DO ship the workflow even if a parent / global
+# .gitignore swallows .github (some setups blanket-ignore it).
+!.github/
+!.github/**

@@ -1,0 +1,73 @@
+# Render the test documents (HTML, PDF, Reveal.js) on every push to
+# `main` and publish them to the `gh-pages` branch. The result is
+# served as the project's GitHub Pages site.
+#
+# To enable on a fresh repo:
+#   1. Push this workflow to `main`.
+#   2. Wait for the first run to create the `gh-pages` branch.
+#   3. Settings → Pages → Source: "Deploy from a branch" → `gh-pages` / `/ (root)`.
+
+name: Render and publish
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+
+      - name: Set up TinyTeX (LaTeX for the PDF render)
+        uses: r-lib/actions/setup-tinytex@v2
+
+      - name: Pre-install LaTeX packages used by quartable
+        run: |
+          tlmgr install longtable booktabs multirow array \
+                        koma-script babel-french fancyvrb \
+                        listings xcolor titling
+
+      - name: Render landing page
+        run: quarto render index.qmd
+
+      - name: Render HTML test
+        run: quarto render test_quartable.qmd --to html
+
+      - name: Render PDF test
+        run: quarto render test_quartable.qmd --to pdf
+
+      - name: Render Reveal.js slides
+        run: quarto render test_reveal_quartable.qmd
+
+      - name: Assemble site
+        run: |
+          mkdir -p _site
+          # Landing page → index.html. The three test renders keep
+          # their default filenames so the cross-links inside index.qmd
+          # (and any direct links from the README) resolve cleanly.
+          cp index.html                 _site/index.html
+          cp test_quartable.html        _site/test_quartable.html
+          cp test_quartable.pdf         _site/test_quartable.pdf
+          cp test_reveal_quartable.html _site/test_reveal_quartable.html
+          # Asset folders (CSS, fonts, search index, …) — only present
+          # for HTML/Reveal renders, hence the `|| true` guards.
+          [ -d index_files ]                 && cp -r index_files                 _site/ || true
+          [ -d test_quartable_files ]        && cp -r test_quartable_files        _site/ || true
+          [ -d test_reveal_quartable_files ] && cp -r test_reveal_quartable_files _site/ || true
+
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir:  ./_site
+          publish_branch: gh-pages
