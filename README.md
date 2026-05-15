@@ -1,7 +1,7 @@
 # Quartable
 
 
-<img width="680" height="760" alt="quartable_v2_1" src="https://github.com/user-attachments/assets/2a865e1c-9bec-4192-b531-0ea4c787986d" />
+<img width="472" height="544" alt="quartable_v2_1" src="https://github.com/user-attachments/assets/30c7d4af-8036-415a-a296-2674cad93ad7" />
 
 
 ## Installation
