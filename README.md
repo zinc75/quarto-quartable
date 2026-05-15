@@ -44,20 +44,7 @@ above the rendered table:
 - PDF demo — <https://zinc75.github.io/quarto-quartable/test_quartable.pdf>
 - Reveal.js slides — <https://zinc75.github.io/quarto-quartable/test_reveal_quartable.html>
 
-## Installation
 
-From the directory of your Quarto project:
-
-```bash
-quarto add zinc75/quarto-quartable
-```
-
-Then enable the filter in your document's YAML front matter:
-
-```yaml
-filters:
-  - quartable
-```
 
 ## Quick example
 
