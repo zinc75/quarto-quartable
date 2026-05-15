@@ -1,6 +1,9 @@
 # Quartable
 
 
+<img width="1360" height="1520" alt="image" src="https://github.com/user-attachments/assets/e7c89e3f-8838-43db-8771-06b412963d5b" />
+
+
 ## Installation
 
 From the directory of your Quarto project:
