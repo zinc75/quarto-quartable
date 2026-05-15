@@ -1,6 +1,24 @@
-# quartable
+# Quartable
 
-A [Quarto](https://quarto.org/) extension that adds **column spans, row
+
+## Installation
+
+From the directory of your Quarto project:
+
+```bash
+quarto add zinc75/quarto-quartable
+```
+
+Then enable the filter in your document's YAML front matter:
+
+```yaml
+filters:
+  - quartable
+```
+
+## Description
+
+Quartable is a [Quarto](https://quarto.org/) extension that adds **column spans, row
 spans, partial horizontal lines (clines), full midrules, vertical lines
 and per-cell alignment overrides** to Markdown pipe tables. Targets
 HTML, Reveal.js and PDF/LaTeX with a single source.
