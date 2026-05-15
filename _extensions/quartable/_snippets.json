@@ -1,0 +1,61 @@
+{
+  "Column span (cs=N)": {
+    "prefix": "qt-cs",
+    "body": ["[${1:Header}]{cs=${2:2}}"],
+    "description": "quartable: column span. Merges the next N-1 placeholder cells on the same row (you must write N-1 empty cells immediately after)."
+  },
+  "Row span (rs=N + ^)": {
+    "prefix": "qt-rs",
+    "body": ["[${1:Group}]{rs=${2:3}}"],
+    "description": "quartable: row span. Continuation cells in the rows below must be a single `^` (or empty)."
+  },
+  "Per-cell alignment override": {
+    "prefix": "qt-align",
+    "body": ["[${1:text}]{align=${2|l,c,r,left,center,right|}}"],
+    "description": "quartable: per-cell alignment override (l / c / r or left / center / right)."
+  },
+  "Vertical line — left of cell (.vl)": {
+    "prefix": "qt-vl",
+    "body": ["[${1:text}]{cs=${2:1} .vl}"],
+    "description": "quartable: vertical line on the LEFT boundary of the cell (LaTeX/PDF only)."
+  },
+  "Vertical line — right of cell (.vr)": {
+    "prefix": "qt-vr",
+    "body": ["[${1:text}]{cs=${2:1} .vr}"],
+    "description": "quartable: vertical line on the RIGHT boundary of the cell (LaTeX/PDF only)."
+  },
+  "Vertical line with limited height (.vr rspan=K)": {
+    "prefix": "qt-vr-rspan",
+    "body": ["[${1:text}]{cs=${2:2} .vr rspan=${3:2}}"],
+    "description": "quartable: vertical line limited to the declaring row plus K-1 rows below (LaTeX/PDF only)."
+  },
+  "Midrule row (===)": {
+    "prefix": "qt-midrule",
+    "body": ["| === |${1: ...placeholders... }|"],
+    "description": "quartable: full-width horizontal separator. The first cell of the row must be exactly `===`. Fill the remaining cells with empty placeholders."
+  },
+  "Cline / partial rule (===N-M)": {
+    "prefix": "qt-cline",
+    "body": ["| ===${1:2-3} |${2: ...placeholders... }|"],
+    "description": "quartable: partial horizontal line over columns N..M. Combine ranges and single columns with commas: `===1-2,4-5` or `===2-3,5`."
+  },
+  "Quartable filter — front-matter": {
+    "prefix": "qt-filter",
+    "body": ["filters:", "  - quartable"],
+    "description": "Enable the quartable filter in the document YAML front matter."
+  },
+  "Full quartable table skeleton": {
+    "prefix": "qt-table",
+    "body": [
+      "| [${1:Method}]{rs=2}    | [${2:Set A}]{cs=2} |        | [${3:Set B}]{cs=2} |        |",
+      "|-----------------------|:------------------:|:------:|:------------------:|-------:|",
+      "| ===2-3,4-5            |                    |        |                    |        |",
+      "|                       | ${4:Score X}       | ${5:Score Y}| ${6:Score X}  | ${7:Score Y}|",
+      "| ===                   |                    |        |                    |        |",
+      "| ${8:Baseline}         | ${9:0.71}          | ${10:2.1}| ${11:0.68}       | ${12:1.9} |",
+      "| ${13:Proposed}        | **${14:0.93}**     | **${15:3.7}**| **${16:0.92}** | **${17:3.6}** |",
+      "$0"
+    ],
+    "description": "quartable: full table skeleton showcasing colspan, rowspan, midrule and cline."
+  }
+}

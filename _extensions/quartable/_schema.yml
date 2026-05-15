@@ -1,0 +1,71 @@
+$schema: https://m.canouil.dev/quarto-wizard/assets/schema/v1/extension-schema.json
+
+# quartable — schema for Quarto Wizard
+#
+# quartable adds column spans, row spans, midrules, partial clines (cmidrules),
+# vertical lines and per-cell alignment overrides to Markdown pipe tables.
+# All features are expressed as attributes on Span elements ([text]{...}) inside
+# table cells, except for the row markers `===` / `===N-M` / `===N,...` which
+# are row-level constructs detected by the filter and have no attribute syntax.
+
+attributes:
+  Span:
+    cs:
+      type: integer
+      min: 1
+      description: |
+        Column span. The cell merges the next `cs - 1` placeholder cells on
+        the same row (you must write `cs - 1` empty cells immediately after,
+        as required by the pipe-table syntax).
+    rs:
+      type: integer
+      min: 1
+      description: |
+        Row span. The cell merges with the next `rs - 1` rows. Continuation
+        cells in the rows below must be a single `^` (or empty).
+    align:
+      type: string
+      enum: [l, c, r, left, center, right]
+      enum-case-insensitive: true
+      description: |
+        Per-cell alignment override. Forces `left`, `center` or `right`
+        alignment on a single cell, overriding the column's Markdown
+        alignment. Both short (`l`, `c`, `r`) and long (`left`, `center`,
+        `right`) values are accepted.
+    rspan:
+      type: integer
+      min: 1
+      description: |
+        Limits the height of a vertical line declared with `.vl` / `.vr`
+        to the declaring row plus `rspan - 1` rows below. Without `rspan`,
+        the vertical line spans the full height of the table.
+        LaTeX/PDF only.
+
+classes:
+  vl:
+    description: |
+      Adds a vertical line on the LEFT boundary of the cell. On a regular
+      (cs=1) cell this is the cell's own left edge; on a colspan cell it
+      is the left edge of the merged span. Combine with `rspan=K` to
+      limit the line height. LaTeX/PDF only — silently ignored in HTML
+      and Reveal.js in v0.1.
+  vr:
+    description: |
+      Adds a vertical line on the RIGHT boundary of the cell. On a
+      regular (cs=1) cell this is the cell's own right edge; on a
+      colspan cell it is the right edge of the merged span. Combine
+      with `rspan=K` to limit the line height. LaTeX/PDF only —
+      silently ignored in HTML and Reveal.js in v0.1.
+  quartable:
+    description: |
+      Auto-injected by the filter on every table that uses any quartable
+      feature. Triggers the booktabs-inspired CSS styling in HTML and
+      Reveal.js (no per-row borders, only the rules added by the filter).
+      Tables that do not use any quartable feature keep their default
+      Quarto styling untouched.
+  quartable-head-sep:
+    description: |
+      Auto-injected on tables whose body starts with a `===` row
+      (explicit head/body separator opt-in). Draws the matching
+      booktabs `\midrule` in LaTeX and a CSS border on the last header
+      row in HTML/Reveal.
