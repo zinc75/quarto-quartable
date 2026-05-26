@@ -242,6 +242,10 @@ quarto preview test_reveal_quartable.qmd
 The PDF target keeps the intermediate `.tex` (`keep-tex: true`) so you
 can inspect the LaTeX directly when debugging.
 
+## Use in a full Quarto template
+
+This extension is used in the Quarto cnam-thesis template :  <https://github.com/zinc75/quarto-cnam-thesis> .
+
 ## License
 
 [MIT](LICENSE) — see `LICENSE` for the full text.
