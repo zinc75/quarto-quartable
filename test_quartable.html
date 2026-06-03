@@ -136,7 +136,7 @@ window.Quarto = {
   </ul></li>
   <li><a href="#midrule-rowspan" id="toc-midrule-rowspan" class="nav-link" data-scroll-target="#midrule-rowspan"><span class="header-section-number">6</span> Midrule + rowspan</a></li>
   <li><a href="#full-table-colspan-rowspan-cline-midrule" id="toc-full-table-colspan-rowspan-cline-midrule" class="nav-link" data-scroll-target="#full-table-colspan-rowspan-cline-midrule"><span class="header-section-number">7</span> Full table — colspan + rowspan + cline + midrule</a></li>
-  <li><a href="#vlines-vertical-lines-latex-only" id="toc-vlines-vertical-lines-latex-only" class="nav-link" data-scroll-target="#vlines-vertical-lines-latex-only"><span class="header-section-number">8</span> Vlines (vertical lines, LaTeX only)</a>
+  <li><a href="#vlines-vertical-lines" id="toc-vlines-vertical-lines" class="nav-link" data-scroll-target="#vlines-vertical-lines"><span class="header-section-number">8</span> Vlines (vertical lines)</a>
   <ul class="collapse">
   <li><a href="#full-height-vline-.vr" id="toc-full-height-vline-.vr" class="nav-link" data-scroll-target="#full-height-vline-.vr"><span class="header-section-number">8.1</span> Full-height vline (<code>.vr</code>)</a></li>
   <li><a href="#full-height-vlines-on-both-sides-.vl-.vr" id="toc-full-height-vlines-on-both-sides-.vl-.vr" class="nav-link" data-scroll-target="#full-height-vlines-on-both-sides-.vl-.vr"><span class="header-section-number">8.2</span> Full-height vlines on both sides (<code>.vl .vr</code>)</a></li>
@@ -226,7 +226,7 @@ window.Quarto = {
 </tr>
 <tr class="odd">
 <td><code>[text]{cs=N .vl .vr rspan=K}</code></td>
-<td>vertical line(s) on a colspan boundary (LaTeX only)</td>
+<td>vertical line(s) on a colspan boundary</td>
 </tr>
 <tr class="even">
 <td><code>[text]{align=l\|c\|r}</code></td>
@@ -762,12 +762,10 @@ window.Quarto = {
 </table>
 <div style="page-break-after: always;"></div>
 </section>
-<section id="vlines-vertical-lines-latex-only" class="level1" data-number="8">
-<h1 data-number="8"><span class="header-section-number">8</span> Vlines (vertical lines, LaTeX only)</h1>
+<section id="vlines-vertical-lines" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Vlines (vertical lines)</h1>
 <p>Adding <code>.vl</code> and/or <code>.vr</code> to a cell draws a vertical line on that cell’s left and/or right edge (or, for a colspan cell, on the boundary of the merged span). By default the line spans the full table height; the optional <code>rspan=K</code> attribute limits it to the declaring row plus <code>K-1</code> rows below.</p>
-<blockquote class="blockquote">
-<p>Note: <code>.vl</code>/<code>.vr</code> are LaTeX-only in v0.1. HTML and Reveal silently ignore them.</p>
-</blockquote>
+<p>Vlines render in all three targets: LaTeX (column-spec / <code>\multicolumn</code> injection) and HTML/Reveal (per-cell <code>border-left</code>/<code>border-right</code> under <code>border-collapse</code>).</p>
 <section id="full-height-vline-.vr" class="level2" data-number="8.1">
 <h2 data-number="8.1" class="anchored" data-anchor-id="full-height-vline-.vr"><span class="header-section-number">8.1</span> Full-height vline (<code>.vr</code>)</h2>
 <p><strong>Code:</strong></p>
@@ -782,28 +780,28 @@ window.Quarto = {
 <thead>
 <tr class="header">
 <th>Item</th>
-<th colspan="2" style="text-align: center;" data-quartable-vr="full">Measurements</th>
-<th>Note</th>
+<th colspan="2" class="quartable-vr" style="text-align: center;">Measurements</th>
+<th class="quartable-vl">Note</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td>A</td>
 <td style="text-align: center;">1</td>
-<td style="text-align: center;">2</td>
-<td>foo</td>
+<td class="quartable-vr" style="text-align: center;">2</td>
+<td class="quartable-vl">foo</td>
 </tr>
 <tr class="even">
 <td>B</td>
 <td style="text-align: center;">3</td>
-<td style="text-align: center;">4</td>
-<td>bar</td>
+<td class="quartable-vr" style="text-align: center;">4</td>
+<td class="quartable-vl">bar</td>
 </tr>
 <tr class="odd">
 <td>C</td>
 <td style="text-align: center;">5</td>
-<td style="text-align: center;">6</td>
-<td>baz</td>
+<td class="quartable-vr" style="text-align: center;">6</td>
+<td class="quartable-vl">baz</td>
 </tr>
 </tbody>
 </table>
@@ -820,23 +818,23 @@ window.Quarto = {
 <table class="quartable quartable-head-sep caption-top table">
 <thead>
 <tr class="header">
-<th>Item</th>
-<th colspan="2" style="text-align: center;" data-quartable-vl="full" data-quartable-vr="full">Measurements</th>
-<th>Note</th>
+<th class="quartable-vr">Item</th>
+<th colspan="2" class="quartable-vl quartable-vr" style="text-align: center;">Measurements</th>
+<th class="quartable-vl">Note</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>A</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">2</td>
-<td>foo</td>
+<td class="quartable-vr">A</td>
+<td class="quartable-vl" style="text-align: center;">1</td>
+<td class="quartable-vr" style="text-align: center;">2</td>
+<td class="quartable-vl">foo</td>
 </tr>
 <tr class="even">
-<td>B</td>
-<td style="text-align: center;">3</td>
-<td style="text-align: center;">4</td>
-<td>bar</td>
+<td class="quartable-vr">B</td>
+<td class="quartable-vl" style="text-align: center;">3</td>
+<td class="quartable-vr" style="text-align: center;">4</td>
+<td class="quartable-vl">bar</td>
 </tr>
 </tbody>
 </table>
@@ -870,13 +868,13 @@ window.Quarto = {
 <td>foo</td>
 </tr>
 <tr class="even">
-<td>B</td>
-<td data-quartable-vl="2">3</td>
+<td class="quartable-vr">B</td>
+<td>3</td>
 <td>4</td>
 <td>bar</td>
 </tr>
 <tr class="odd">
-<td>C</td>
+<td class="quartable-vr">C</td>
 <td>5</td>
 <td>6</td>
 <td>baz</td>
@@ -911,20 +909,20 @@ window.Quarto = {
 <tbody>
 <tr class="odd">
 <td>F</td>
-<td>G</td>
-<td data-quartable-vl="2">H</td>
+<td class="quartable-vr">G</td>
+<td>H</td>
 <td>I</td>
 </tr>
 <tr class="even">
 <td>I</td>
-<td>J</td>
-<td>K</td>
-<td data-quartable-vl="2">L</td>
+<td class="quartable-vr">J</td>
+<td class="quartable-vr">K</td>
+<td>L</td>
 </tr>
 <tr class="odd">
 <td>M</td>
 <td>N</td>
-<td>O</td>
+<td class="quartable-vr">O</td>
 <td>P</td>
 </tr>
 </tbody>
@@ -1114,22 +1112,22 @@ window.Quarto = {
 <thead>
 <tr class="header">
 <th>Item</th>
-<th colspan="2" style="text-align: left;" data-quartable-vr="full" data-quartable-align="l">Forced left</th>
-<th>Note</th>
+<th colspan="2" class="quartable-vr" style="text-align: left;" data-quartable-align="l">Forced left</th>
+<th class="quartable-vl">Note</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td>A</td>
 <td>1</td>
-<td>2</td>
-<td>foo</td>
+<td class="quartable-vr">2</td>
+<td class="quartable-vl">foo</td>
 </tr>
 <tr class="even">
 <td>B</td>
 <td>3</td>
-<td>4</td>
-<td>bar</td>
+<td class="quartable-vr">4</td>
+<td class="quartable-vl">bar</td>
 </tr>
 </tbody>
 </table>

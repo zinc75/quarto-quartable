@@ -199,7 +199,7 @@
 
 <section id="title-slide" class="quarto-title-block center">
   <h1 class="title"><code>quartable</code> — Reveal.js demo</h1>
-  <p class="subtitle">colspan · rowspan · midrule · cline · align</p>
+  <p class="subtitle">colspan · rowspan · midrule · cline · vline · align</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -244,7 +244,7 @@ Eric Bavu
 </tr>
 <tr class="odd">
 <td><code>[text]{cs=N .vl .vr rspan=K}</code></td>
-<td>vertical line(s) on a colspan boundary (LaTeX only)</td>
+<td>vertical line(s) on a colspan boundary</td>
 </tr>
 <tr class="even">
 <td><code>[text]{align=l\|c\|r}</code></td>
@@ -526,18 +526,63 @@ Eric Bavu
 </tbody>
 </table>
 </section>
+<section id="midrule-rowspan" class="slide level2">
+<h2>Midrule + rowspan</h2>
+<p>A <code>===</code> between rowspan groups separates them cleanly: each group’s <code>\multirow</code> stays within its own <code>&lt;tbody&gt;</code>.</p>
+<p><strong>Code:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href=""></a><span class="pp">|</span> Group            <span class="pp">|</span> Item <span class="pp">|</span> Value <span class="pp">|</span></span>
+<span id="cb8-2"><a href=""></a><span class="pp">|------------------|:----:|------:|</span></span>
+<span id="cb8-3"><a href=""></a><span class="pp">|</span> ===              <span class="pp">|</span>      <span class="pp">|</span>       <span class="pp">|</span></span>
+<span id="cb8-4"><a href=""></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Group A</span><span class="co">]</span>{rs=2}  <span class="pp">|</span> x1   <span class="pp">|</span>  0.71 <span class="pp">|</span></span>
+<span id="cb8-5"><a href=""></a><span class="pp">|</span> ^                <span class="pp">|</span> x2   <span class="pp">|</span>  0.68 <span class="pp">|</span></span>
+<span id="cb8-6"><a href=""></a><span class="pp">|</span> ===              <span class="pp">|</span>      <span class="pp">|</span>       <span class="pp">|</span></span>
+<span id="cb8-7"><a href=""></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Group B</span><span class="co">]</span>{rs=2}  <span class="pp">|</span> x1   <span class="pp">|</span>  0.89 <span class="pp">|</span></span>
+<span id="cb8-8"><a href=""></a><span class="pp">|</span> ^                <span class="pp">|</span> x2   <span class="pp">|</span>  0.87 <span class="pp">|</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Rendered:</strong></p>
+<table class="quartable quartable-head-sep caption-top">
+<thead>
+<tr class="header">
+<th>Group</th>
+<th style="text-align: center;">Item</th>
+<th style="text-align: right;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td rowspan="2">Group A</td>
+<td style="text-align: center;">x1</td>
+<td style="text-align: right;">0.71</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">x2</td>
+<td style="text-align: right;">0.68</td>
+</tr>
+</tbody>
+<tbody>
+<tr class="odd">
+<td rowspan="2">Group B</td>
+<td style="text-align: center;">x1</td>
+<td style="text-align: right;">0.89</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">x2</td>
+<td style="text-align: right;">0.87</td>
+</tr>
+</tbody>
+</table>
+</section>
 <section id="full-table-every-feature-combined" class="slide level2">
 <h2>Full table — every feature combined</h2>
 <p><strong>Code:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href=""></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Method</span><span class="co">]</span>{rs=2}    <span class="pp">|</span> <span class="co">[</span><span class="ot">Set A</span><span class="co">]</span>{cs=2} <span class="pp">|</span>        <span class="pp">|</span> <span class="co">[</span><span class="ot">Set B</span><span class="co">]</span>{cs=2} <span class="pp">|</span>       <span class="pp">|</span></span>
-<span id="cb8-2"><a href=""></a><span class="pp">|-------------------|:-------------:|:------:|:-------------:|------:|</span></span>
-<span id="cb8-3"><a href=""></a><span class="pp">|</span> ===2-3,4-5        <span class="pp">|</span>               <span class="pp">|</span>        <span class="pp">|</span>               <span class="pp">|</span>       <span class="pp">|</span></span>
-<span id="cb8-4"><a href=""></a><span class="pp">|</span>                   <span class="pp">|</span> Score X       <span class="pp">|</span> Score Y<span class="pp">|</span> Score X       <span class="pp">|</span>Score Y<span class="pp">|</span></span>
-<span id="cb8-5"><a href=""></a><span class="pp">|</span> ===               <span class="pp">|</span>               <span class="pp">|</span>        <span class="pp">|</span>               <span class="pp">|</span>       <span class="pp">|</span></span>
-<span id="cb8-6"><a href=""></a><span class="pp">|</span> Baseline          <span class="pp">|</span> 0.71          <span class="pp">|</span> 2.1    <span class="pp">|</span> 0.68          <span class="pp">|</span>   1.9 <span class="pp">|</span></span>
-<span id="cb8-7"><a href=""></a><span class="pp">|</span> Wiener            <span class="pp">|</span> 0.82          <span class="pp">|</span> 2.8    <span class="pp">|</span> 0.79          <span class="pp">|</span>   2.6 <span class="pp">|</span></span>
-<span id="cb8-8"><a href=""></a><span class="pp">|</span> ===               <span class="pp">|</span>               <span class="pp">|</span>        <span class="pp">|</span>               <span class="pp">|</span>       <span class="pp">|</span></span>
-<span id="cb8-9"><a href=""></a><span class="pp">|</span> **Proposed**      | **0.93**      | **3.7**| **0.92**      |**3.6**<span class="pp">|</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href=""></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Method</span><span class="co">]</span>{rs=2}    <span class="pp">|</span> <span class="co">[</span><span class="ot">Set A</span><span class="co">]</span>{cs=2} <span class="pp">|</span>        <span class="pp">|</span> <span class="co">[</span><span class="ot">Set B</span><span class="co">]</span>{cs=2} <span class="pp">|</span>       <span class="pp">|</span></span>
+<span id="cb9-2"><a href=""></a><span class="pp">|-------------------|:-------------:|:------:|:-------------:|------:|</span></span>
+<span id="cb9-3"><a href=""></a><span class="pp">|</span> ===2-3,4-5        <span class="pp">|</span>               <span class="pp">|</span>        <span class="pp">|</span>               <span class="pp">|</span>       <span class="pp">|</span></span>
+<span id="cb9-4"><a href=""></a><span class="pp">|</span>                   <span class="pp">|</span> Score X       <span class="pp">|</span> Score Y<span class="pp">|</span> Score X       <span class="pp">|</span>Score Y<span class="pp">|</span></span>
+<span id="cb9-5"><a href=""></a><span class="pp">|</span> ===               <span class="pp">|</span>               <span class="pp">|</span>        <span class="pp">|</span>               <span class="pp">|</span>       <span class="pp">|</span></span>
+<span id="cb9-6"><a href=""></a><span class="pp">|</span> Baseline          <span class="pp">|</span> 0.71          <span class="pp">|</span> 2.1    <span class="pp">|</span> 0.68          <span class="pp">|</span>   1.9 <span class="pp">|</span></span>
+<span id="cb9-7"><a href=""></a><span class="pp">|</span> Wiener            <span class="pp">|</span> 0.82          <span class="pp">|</span> 2.8    <span class="pp">|</span> 0.79          <span class="pp">|</span>   2.6 <span class="pp">|</span></span>
+<span id="cb9-8"><a href=""></a><span class="pp">|</span> ===               <span class="pp">|</span>               <span class="pp">|</span>        <span class="pp">|</span>               <span class="pp">|</span>       <span class="pp">|</span></span>
+<span id="cb9-9"><a href=""></a><span class="pp">|</span> **Proposed**      | **0.93**      | **3.7**| **0.92**      |**3.6**<span class="pp">|</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Rendered:</strong></p>
 <table class="quartable caption-top">
 <tbody>
@@ -584,12 +629,12 @@ Eric Bavu
 <h2>Per-cell alignment override (regular cells)</h2>
 <p><code>align=</code> overrides the column’s Markdown alignment. Both short (<code>l</code>/<code>c</code>/<code>r</code>) and long (<code>left</code>/<code>center</code>/<code>right</code>) values work.</p>
 <p><strong>Code:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href=""></a><span class="pp">|</span> Description    <span class="pp">|</span>                       Value <span class="pp">|</span></span>
-<span id="cb9-2"><a href=""></a><span class="pp">|:---------------|----------------------------:|</span></span>
-<span id="cb9-3"><a href=""></a><span class="pp">|</span> Default        <span class="pp">|</span>                          42 <span class="pp">|</span></span>
-<span id="cb9-4"><a href=""></a><span class="pp">|</span> Default        <span class="pp">|</span>             a longer phrase <span class="pp">|</span></span>
-<span id="cb9-5"><a href=""></a><span class="pp">|</span> <span class="in">`align=l`</span>      <span class="pp">|</span> <span class="co">[</span><span class="ot">42</span><span class="co">]</span>{align=l}               <span class="pp">|</span></span>
-<span id="cb9-6"><a href=""></a><span class="pp">|</span> <span class="in">`align=c`</span>      <span class="pp">|</span> <span class="co">[</span><span class="ot">two words</span><span class="co">]</span>{align=c}  <span class="pp">|</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href=""></a><span class="pp">|</span> Description    <span class="pp">|</span>                       Value <span class="pp">|</span></span>
+<span id="cb10-2"><a href=""></a><span class="pp">|:---------------|----------------------------:|</span></span>
+<span id="cb10-3"><a href=""></a><span class="pp">|</span> Default        <span class="pp">|</span>                          42 <span class="pp">|</span></span>
+<span id="cb10-4"><a href=""></a><span class="pp">|</span> Default        <span class="pp">|</span>             a longer phrase <span class="pp">|</span></span>
+<span id="cb10-5"><a href=""></a><span class="pp">|</span> <span class="in">`align=l`</span>      <span class="pp">|</span> <span class="co">[</span><span class="ot">42</span><span class="co">]</span>{align=l}               <span class="pp">|</span></span>
+<span id="cb10-6"><a href=""></a><span class="pp">|</span> <span class="in">`align=c`</span>      <span class="pp">|</span> <span class="co">[</span><span class="ot">two words</span><span class="co">]</span>{align=c}  <span class="pp">|</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Rendered:</strong></p>
 <table class="quartable caption-top">
 <thead>
@@ -622,14 +667,14 @@ Eric Bavu
 <h2>Per-cell alignment override (colspan cells)</h2>
 <p>The <code>cs &gt; 1</code> default is centered. <code>align=</code> overrides it.</p>
 <p><strong>Code:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href=""></a><span class="pp">|</span> Step <span class="pp">|</span> A   <span class="pp">|</span> B   <span class="pp">|</span> Total <span class="pp">|</span></span>
-<span id="cb10-2"><a href=""></a><span class="pp">|:-----|:---:|:---:|------:|</span></span>
-<span id="cb10-3"><a href=""></a><span class="pp">|</span> ===  <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span></span>
-<span id="cb10-4"><a href=""></a><span class="pp">|</span> 1    <span class="pp">|</span> <span class="co">[</span><span class="ot">data</span><span class="co">]</span>{cs=3}              <span class="pp">|</span>   <span class="pp">|</span>   <span class="pp">|</span></span>
-<span id="cb10-5"><a href=""></a><span class="pp">|</span> 2    <span class="pp">|</span> <span class="co">[</span><span class="ot">data</span><span class="co">]</span>{cs=3 align=l}      <span class="pp">|</span>   <span class="pp">|</span>   <span class="pp">|</span></span>
-<span id="cb10-6"><a href=""></a><span class="pp">|</span> 3    <span class="pp">|</span> <span class="co">[</span><span class="ot">data</span><span class="co">]</span>{cs=3 align=r}      <span class="pp">|</span>   <span class="pp">|</span>   <span class="pp">|</span></span>
-<span id="cb10-7"><a href=""></a><span class="pp">|</span> ===2-4 <span class="pp">|</span>   <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span></span>
-<span id="cb10-8"><a href=""></a><span class="pp">|</span> 4    <span class="pp">|</span> 12  <span class="pp">|</span> 34  <span class="pp">|</span>   100 <span class="pp">|</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href=""></a><span class="pp">|</span> Step <span class="pp">|</span> A   <span class="pp">|</span> B   <span class="pp">|</span> Total <span class="pp">|</span></span>
+<span id="cb11-2"><a href=""></a><span class="pp">|:-----|:---:|:---:|------:|</span></span>
+<span id="cb11-3"><a href=""></a><span class="pp">|</span> ===  <span class="pp">|</span>     <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span></span>
+<span id="cb11-4"><a href=""></a><span class="pp">|</span> 1    <span class="pp">|</span> <span class="co">[</span><span class="ot">data</span><span class="co">]</span>{cs=3}              <span class="pp">|</span>   <span class="pp">|</span>   <span class="pp">|</span></span>
+<span id="cb11-5"><a href=""></a><span class="pp">|</span> 2    <span class="pp">|</span> <span class="co">[</span><span class="ot">data</span><span class="co">]</span>{cs=3 align=l}      <span class="pp">|</span>   <span class="pp">|</span>   <span class="pp">|</span></span>
+<span id="cb11-6"><a href=""></a><span class="pp">|</span> 3    <span class="pp">|</span> <span class="co">[</span><span class="ot">data</span><span class="co">]</span>{cs=3 align=r}      <span class="pp">|</span>   <span class="pp">|</span>   <span class="pp">|</span></span>
+<span id="cb11-7"><a href=""></a><span class="pp">|</span> ===2-4 <span class="pp">|</span>   <span class="pp">|</span>     <span class="pp">|</span>       <span class="pp">|</span></span>
+<span id="cb11-8"><a href=""></a><span class="pp">|</span> 4    <span class="pp">|</span> 12  <span class="pp">|</span> 34  <span class="pp">|</span>   100 <span class="pp">|</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Rendered:</strong></p>
 <table class="quartable quartable-head-sep caption-top">
 <thead>
@@ -662,39 +707,151 @@ Eric Bavu
 </tbody>
 </table>
 </section>
-<section id="vlines-latex-only" class="slide level2">
-<h2>Vlines — LaTeX only</h2>
-<p><code>.vl</code> and <code>.vr</code> draw vertical lines on a cell’s left/right edge (or on the boundary of a colspan). <code>rspan=K</code> limits the line to <code>K</code> rows.</p>
-<blockquote>
-<p>⚠ Vlines are <strong>LaTeX only</strong> in v0.1. They do not render in HTML or Reveal — see the corresponding section in the PDF test for the visual.</p>
-</blockquote>
+<section id="vlines-full-height-.vr" class="slide level2">
+<h2>Vlines — full-height (<code>.vr</code>)</h2>
+<p><code>.vl</code> and <code>.vr</code> draw vertical lines on a cell’s left/right edge (or on the boundary of a colspan). They render in Reveal (and HTML) as per-cell borders, and in LaTeX as column-spec / <code>\multicolumn</code> rules.</p>
 <p><strong>Code:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href=""></a><span class="pp">|</span> Item <span class="pp">|</span> <span class="co">[</span><span class="ot">Measurements</span><span class="co">]</span>{cs=2 .vr} <span class="pp">|</span>   <span class="pp">|</span> Note <span class="pp">|</span></span>
-<span id="cb11-2"><a href=""></a><span class="pp">|------|:------------------------:|</span>:-:<span class="pp">|------|</span></span>
-<span id="cb11-3"><a href=""></a><span class="pp">|</span> ===  <span class="pp">|</span>                          <span class="pp">|</span>   <span class="pp">|</span>      <span class="pp">|</span></span>
-<span id="cb11-4"><a href=""></a><span class="pp">|</span> A    <span class="pp">|</span> 1                        <span class="pp">|</span> 2 <span class="pp">|</span> foo  <span class="pp">|</span></span>
-<span id="cb11-5"><a href=""></a><span class="pp">|</span> B    <span class="pp">|</span> 3                        <span class="pp">|</span> 4 <span class="pp">|</span> bar  <span class="pp">|</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href=""></a><span class="pp">|</span> Item <span class="pp">|</span> <span class="co">[</span><span class="ot">Measurements</span><span class="co">]</span>{cs=2 .vr} <span class="pp">|</span>   <span class="pp">|</span> Note <span class="pp">|</span></span>
+<span id="cb12-2"><a href=""></a><span class="pp">|------|:------------------------:|</span>:-:<span class="pp">|------|</span></span>
+<span id="cb12-3"><a href=""></a><span class="pp">|</span> ===  <span class="pp">|</span>                          <span class="pp">|</span>   <span class="pp">|</span>      <span class="pp">|</span></span>
+<span id="cb12-4"><a href=""></a><span class="pp">|</span> A    <span class="pp">|</span> 1                        <span class="pp">|</span> 2 <span class="pp">|</span> foo  <span class="pp">|</span></span>
+<span id="cb12-5"><a href=""></a><span class="pp">|</span> B    <span class="pp">|</span> 3                        <span class="pp">|</span> 4 <span class="pp">|</span> bar  <span class="pp">|</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Rendered:</strong></p>
 <table class="quartable quartable-head-sep caption-top">
 <thead>
 <tr class="header">
 <th>Item</th>
-<th colspan="2" style="text-align: center;" data-quartable-vr="full">Measurements</th>
-<th>Note</th>
+<th colspan="2" class="quartable-vr" style="text-align: center;">Measurements</th>
+<th class="quartable-vl">Note</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td>A</td>
 <td style="text-align: center;">1</td>
-<td style="text-align: center;">2</td>
-<td>foo</td>
+<td class="quartable-vr" style="text-align: center;">2</td>
+<td class="quartable-vl">foo</td>
 </tr>
 <tr class="even">
 <td>B</td>
 <td style="text-align: center;">3</td>
-<td style="text-align: center;">4</td>
+<td class="quartable-vr" style="text-align: center;">4</td>
+<td class="quartable-vl">bar</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="vlines-both-sides-.vl-.vr" class="slide level2">
+<h2>Vlines — both sides (<code>.vl .vr</code>)</h2>
+<p><strong>Code:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a href=""></a><span class="pp">|</span> Item <span class="pp">|</span> <span class="co">[</span><span class="ot">Measurements</span><span class="co">]</span>{cs=2 .vl .vr} <span class="pp">|</span>   <span class="pp">|</span> Note <span class="pp">|</span></span>
+<span id="cb13-2"><a href=""></a><span class="pp">|------|:----------------------------:|</span>:-:<span class="pp">|------|</span></span>
+<span id="cb13-3"><a href=""></a><span class="pp">|</span> ===  <span class="pp">|</span>                              <span class="pp">|</span>   <span class="pp">|</span>      <span class="pp">|</span></span>
+<span id="cb13-4"><a href=""></a><span class="pp">|</span> A    <span class="pp">|</span> 1                            <span class="pp">|</span> 2 <span class="pp">|</span> foo  <span class="pp">|</span></span>
+<span id="cb13-5"><a href=""></a><span class="pp">|</span> B    <span class="pp">|</span> 3                            <span class="pp">|</span> 4 <span class="pp">|</span> bar  <span class="pp">|</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Rendered:</strong></p>
+<table class="quartable quartable-head-sep caption-top">
+<thead>
+<tr class="header">
+<th class="quartable-vr">Item</th>
+<th colspan="2" class="quartable-vl quartable-vr" style="text-align: center;">Measurements</th>
+<th class="quartable-vl">Note</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td class="quartable-vr">A</td>
+<td class="quartable-vl" style="text-align: center;">1</td>
+<td class="quartable-vr" style="text-align: center;">2</td>
+<td class="quartable-vl">foo</td>
+</tr>
+<tr class="even">
+<td class="quartable-vr">B</td>
+<td class="quartable-vl" style="text-align: center;">3</td>
+<td class="quartable-vr" style="text-align: center;">4</td>
+<td class="quartable-vl">bar</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="vlines-limited-with-rspank" class="slide level2">
+<h2>Vlines — limited with <code>rspan=K</code></h2>
+<p><code>.vl rspan=2</code> on the cell <code>3</code> draws a vline on its left edge for two rows only. Rows above and below do not receive the line.</p>
+<p><strong>Code:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a href=""></a><span class="pp">|</span> Item <span class="pp">|</span> <span class="co">[</span><span class="ot">Measurements</span><span class="co">]</span>{cs=2} <span class="pp">|</span>   <span class="pp">|</span> Note <span class="pp">|</span></span>
+<span id="cb14-2"><a href=""></a><span class="pp">|------|----------------------|---|------|</span></span>
+<span id="cb14-3"><a href=""></a><span class="pp">|</span> ===  <span class="pp">|</span>                      <span class="pp">|</span>   <span class="pp">|</span>      <span class="pp">|</span></span>
+<span id="cb14-4"><a href=""></a><span class="pp">|</span> A    <span class="pp">|</span> 1                    <span class="pp">|</span> 2 <span class="pp">|</span> foo  <span class="pp">|</span></span>
+<span id="cb14-5"><a href=""></a><span class="pp">|</span> B    <span class="pp">|</span> <span class="co">[</span><span class="ot">3</span><span class="co">]</span>{.vl rspan=2}     <span class="pp">|</span> 4 <span class="pp">|</span> bar  <span class="pp">|</span></span>
+<span id="cb14-6"><a href=""></a><span class="pp">|</span> C    <span class="pp">|</span> 5                    <span class="pp">|</span> 6 <span class="pp">|</span> baz  <span class="pp">|</span></span>
+<span id="cb14-7"><a href=""></a><span class="pp">|</span> D    <span class="pp">|</span> 7                    <span class="pp">|</span> 8 <span class="pp">|</span> qux  <span class="pp">|</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Rendered:</strong></p>
+<table class="quartable quartable-head-sep caption-top">
+<thead>
+<tr class="header">
+<th>Item</th>
+<th colspan="2" style="text-align: center;">Measurements</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td>1</td>
+<td>2</td>
+<td>foo</td>
+</tr>
+<tr class="even">
+<td class="quartable-vr">B</td>
+<td>3</td>
+<td>4</td>
 <td>bar</td>
+</tr>
+<tr class="odd">
+<td class="quartable-vr">C</td>
+<td>5</td>
+<td>6</td>
+<td>baz</td>
+</tr>
+<tr class="even">
+<td>D</td>
+<td>7</td>
+<td>8</td>
+<td>qux</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="vlines-combined-with-align" class="slide level2">
+<h2>Vlines — combined with <code>align=</code></h2>
+<p><code>align=</code> and the vline classes are independent and combine on the same cell. Here the colspan is left-aligned <strong>and</strong> carries a right-side vline.</p>
+<p><strong>Code:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href=""></a><span class="pp">|</span> Item <span class="pp">|</span> <span class="co">[</span><span class="ot">Forced left</span><span class="co">]</span>{cs=2 .vr align=l} <span class="pp">|</span>   <span class="pp">|</span> Note <span class="pp">|</span></span>
+<span id="cb15-2"><a href=""></a><span class="pp">|------|:-------------------------------:|</span>:-:<span class="pp">|------|</span></span>
+<span id="cb15-3"><a href=""></a><span class="pp">|</span> ===  <span class="pp">|</span>                                 <span class="pp">|</span>   <span class="pp">|</span>      <span class="pp">|</span></span>
+<span id="cb15-4"><a href=""></a><span class="pp">|</span> A    <span class="pp">|</span> 1                               <span class="pp">|</span> 2 <span class="pp">|</span> foo  <span class="pp">|</span></span>
+<span id="cb15-5"><a href=""></a><span class="pp">|</span> B    <span class="pp">|</span> 3                               <span class="pp">|</span> 4 <span class="pp">|</span> bar  <span class="pp">|</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Rendered:</strong></p>
+<table class="quartable quartable-head-sep caption-top">
+<thead>
+<tr class="header">
+<th>Item</th>
+<th colspan="2" class="quartable-vr" style="text-align: left;" data-quartable-align="l">Forced left</th>
+<th class="quartable-vl">Note</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td style="text-align: center;">1</td>
+<td class="quartable-vr" style="text-align: center;">2</td>
+<td class="quartable-vl">foo</td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td style="text-align: center;">3</td>
+<td class="quartable-vr" style="text-align: center;">4</td>
+<td class="quartable-vl">bar</td>
 </tr>
 </tbody>
 </table>
@@ -703,13 +860,13 @@ Eric Bavu
 <h2>Edge case — rowspan crossing a midrule</h2>
 <p>The filter prints a stderr warning and renders the table as best as HTML/Reveal allow. (LaTeX rendering of this specific case is imperfect because <code>\multirow</code> cannot cross <code>\midrule</code> cleanly.)</p>
 <p><strong>Code:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href=""></a><span class="pp">|</span> Group            <span class="pp">|</span> Value <span class="pp">|</span></span>
-<span id="cb12-2"><a href=""></a><span class="pp">|------------------|------:|</span></span>
-<span id="cb12-3"><a href=""></a><span class="pp">|</span> ===              <span class="pp">|</span>       <span class="pp">|</span></span>
-<span id="cb12-4"><a href=""></a><span class="pp">|</span> <span class="co">[</span><span class="ot">CONFLICT</span><span class="co">]</span>{rs=3} <span class="pp">|</span>     1 <span class="pp">|</span></span>
-<span id="cb12-5"><a href=""></a><span class="pp">|</span> ^                <span class="pp">|</span>     2 <span class="pp">|</span></span>
-<span id="cb12-6"><a href=""></a><span class="pp">|</span> ===              <span class="pp">|</span>       <span class="pp">|</span></span>
-<span id="cb12-7"><a href=""></a><span class="pp">|</span> ^                <span class="pp">|</span>     3 <span class="pp">|</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb16-1"><a href=""></a><span class="pp">|</span> Group            <span class="pp">|</span> Value <span class="pp">|</span></span>
+<span id="cb16-2"><a href=""></a><span class="pp">|------------------|------:|</span></span>
+<span id="cb16-3"><a href=""></a><span class="pp">|</span> ===              <span class="pp">|</span>       <span class="pp">|</span></span>
+<span id="cb16-4"><a href=""></a><span class="pp">|</span> <span class="co">[</span><span class="ot">CONFLICT</span><span class="co">]</span>{rs=3} <span class="pp">|</span>     1 <span class="pp">|</span></span>
+<span id="cb16-5"><a href=""></a><span class="pp">|</span> ^                <span class="pp">|</span>     2 <span class="pp">|</span></span>
+<span id="cb16-6"><a href=""></a><span class="pp">|</span> ===              <span class="pp">|</span>       <span class="pp">|</span></span>
+<span id="cb16-7"><a href=""></a><span class="pp">|</span> ^                <span class="pp">|</span>     3 <span class="pp">|</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Rendered:</strong></p>
 <table class="quartable quartable-head-sep caption-top">
 <thead>
