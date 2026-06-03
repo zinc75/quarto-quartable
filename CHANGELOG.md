@@ -9,6 +9,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 (nothing yet)
 
+## [0.3.0] — 2026-06-03
+
+### Added
+
+- **Vertical lines (`.vl` / `.vr`) now render in HTML and Reveal.js**,
+  reaching feature parity with PDF/LaTeX. Implemented by tagging the
+  cells bordering each requested boundary with CSS classes
+  (`quartable-vl` / `quartable-vr`) which draw a `border-left` /
+  `border-right` under `border-collapse`. The boundary math is shared
+  with the LaTeX path (`collect_vlines`). Full-height and `rspan=K`
+  limited vlines are both supported. A full-height vline whose boundary
+  falls inside a colspan cell is interrupted on that row (CSS cannot
+  draw through a merged cell) — documented limitation.
+- **Expanded Reveal.js test deck** (`test_reveal_quartable.qmd`) to
+  match the HTML/PDF reference: a `Midrule + rowspan` slide and four
+  vline slides (full-height, both-sides, `rspan=K` limited, combined
+  with `align=`).
+
 ## [0.2.0] — 2026-06-03
 
 ### Fixed

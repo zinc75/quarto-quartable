@@ -1,6 +1,6 @@
 ---
 title: "`quartable` — Reveal.js demo"
-subtitle: "colspan · rowspan · midrule · cline · align"
+subtitle: "colspan · rowspan · midrule · cline · vline · align"
 author: "Eric Bavu"
 date: today
 lang: en
@@ -29,7 +29,7 @@ deck doubles as a feature reference.
 | `[text]{rs=N}` + `^`            | merge `N` consecutive rows                            |
 | `===`                           | full-width horizontal separator                       |
 | `===N-M`, `===N`, `===1,3-5`    | partial horizontal separator (booktabs `\cmidrule`)   |
-| `[text]{cs=N .vl .vr rspan=K}`  | vertical line(s) on a colspan boundary (LaTeX only)   |
+| `[text]{cs=N .vl .vr rspan=K}`  | vertical line(s) on a colspan boundary                |
 | `[text]{align=l\|c\|r}`         | per-cell alignment override                           |
 
 > No automatic head/body separator: write `===` (or `===N-M`)
@@ -219,6 +219,37 @@ A bare `N` is shorthand for `N-N`. Mix with ranges using commas.
 
 ---
 
+## Midrule + rowspan
+
+A `===` between rowspan groups separates them cleanly: each group's
+`\multirow` stays within its own `<tbody>`.
+
+**Code:**
+
+```markdown
+| Group            | Item | Value |
+|------------------|:----:|------:|
+| ===              |      |       |
+| [Group A]{rs=2}  | x1   |  0.71 |
+| ^                | x2   |  0.68 |
+| ===              |      |       |
+| [Group B]{rs=2}  | x1   |  0.89 |
+| ^                | x2   |  0.87 |
+```
+
+**Rendered:**
+
+| Group            | Item | Value |
+|------------------|:----:|------:|
+| ===              |      |       |
+| [Group A]{rs=2}  | x1   |  0.71 |
+| ^                | x2   |  0.68 |
+| ===              |      |       |
+| [Group B]{rs=2}  | x1   |  0.89 |
+| ^                | x2   |  0.87 |
+
+---
+
 ## Full table — every feature combined
 
 **Code:**
@@ -306,14 +337,11 @@ The `cs > 1` default is centered. `align=` overrides it.
 
 ---
 
-## Vlines — LaTeX only
+## Vlines — full-height (`.vr`)
 
 `.vl` and `.vr` draw vertical lines on a cell's left/right edge (or
-on the boundary of a colspan). `rspan=K` limits the line to `K` rows.
-
-> ⚠ Vlines are **LaTeX only** in v0.1. They do not render in HTML or
-> Reveal — see the corresponding section in the PDF test for the
-> visual.
+on the boundary of a colspan). They render in Reveal (and HTML) as
+per-cell borders, and in LaTeX as column-spec / `\multicolumn` rules.
 
 **Code:**
 
@@ -332,6 +360,83 @@ on the boundary of a colspan). `rspan=K` limits the line to `K` rows.
 | ===  |                          |   |      |
 | A    | 1                        | 2 | foo  |
 | B    | 3                        | 4 | bar  |
+
+---
+
+## Vlines — both sides (`.vl .vr`)
+
+**Code:**
+
+```markdown
+| Item | [Measurements]{cs=2 .vl .vr} |   | Note |
+|------|:----------------------------:|:-:|------|
+| ===  |                              |   |      |
+| A    | 1                            | 2 | foo  |
+| B    | 3                            | 4 | bar  |
+```
+
+**Rendered:**
+
+| Item | [Measurements]{cs=2 .vl .vr} |   | Note |
+|------|:----------------------------:|:-:|------|
+| ===  |                              |   |      |
+| A    | 1                            | 2 | foo  |
+| B    | 3                            | 4 | bar  |
+
+---
+
+## Vlines — limited with `rspan=K`
+
+`.vl rspan=2` on the cell `3` draws a vline on its left edge for two
+rows only. Rows above and below do not receive the line.
+
+**Code:**
+
+```markdown
+| Item | [Measurements]{cs=2} |   | Note |
+|------|----------------------|---|------|
+| ===  |                      |   |      |
+| A    | 1                    | 2 | foo  |
+| B    | [3]{.vl rspan=2}     | 4 | bar  |
+| C    | 5                    | 6 | baz  |
+| D    | 7                    | 8 | qux  |
+```
+
+**Rendered:**
+
+| Item | [Measurements]{cs=2} |   | Note |
+|------|----------------------|---|------|
+| ===  |                      |   |      |
+| A    | 1                    | 2 | foo  |
+| B    | [3]{.vl rspan=2}     | 4 | bar  |
+| C    | 5                    | 6 | baz  |
+| D    | 7                    | 8 | qux  |
+
+---
+
+## Vlines — combined with `align=`
+
+`align=` and the vline classes are independent and combine on the
+same cell. Here the colspan is left-aligned **and** carries a
+right-side vline.
+
+**Code:**
+
+```markdown
+| Item | [Forced left]{cs=2 .vr align=l} |   | Note |
+|------|:-------------------------------:|:-:|------|
+| ===  |                                 |   |      |
+| A    | 1                               | 2 | foo  |
+| B    | 3                               | 4 | bar  |
+```
+
+**Rendered:**
+
+| Item | [Forced left]{cs=2 .vr align=l} |   | Note |
+|------|:-------------------------------:|:-:|------|
+| ===  |                                 |   |      |
+| A    | 1                               | 2 | foo  |
+| B    | 3                               | 4 | bar  |
 
 ---
 

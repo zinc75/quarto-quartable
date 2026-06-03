@@ -174,15 +174,12 @@ default to centered.
 | `===`         | ✅   | ✅        | ✅          |
 | `===N-M`      | ✅   | ✅        | ✅          |
 | `align=l\|c\|r` | ✅ | ✅        | ✅          |
-| `.vl` / `.vr` | ❌   | ❌        | ✅          |
+| `.vl` / `.vr` | ✅   | ✅        | ✅          |
 
 Tables that use any quartable feature are rendered with a
 booktabs-inspired style in HTML/Reveal (no per-row borders, only the
 explicit rules added by the filter). Regular Quarto tables that don't
 use any quartable feature keep their default Quarto styling untouched.
-
-HTML/Reveal support for vlines is on the roadmap — contributions
-welcome (see [CONTRIBUTING.md](CONTRIBUTING.md)).
 
 ## Design choices
 
@@ -200,13 +197,20 @@ welcome (see [CONTRIBUTING.md](CONTRIBUTING.md)).
   the matching border on the last header row.
 - **Vertical lines, despite booktabs.** The booktabs author actively
   discourages vertical rules. quartable nonetheless implements `.vl` /
-  `.vr` (LaTeX only for now) because they are useful in specific cases
-  — typically to demarcate a colspan group, or to draw a partial
-  vertical separator alongside a `\cmidrule`. Keep them rare.
+  `.vr` because they are useful in specific cases — typically to
+  demarcate a colspan group, or to draw a partial vertical separator
+  alongside a `\cmidrule`. They render in all three targets (LaTeX
+  column-spec / `\multicolumn` injection; HTML/Reveal per-cell
+  borders). Keep them rare.
 
 ## Limitations
 
-- **Vlines are LaTeX-only.** HTML and Reveal silently ignore them.
+- **Vline crossing a colspan (HTML/Reveal)**: a full-height vline whose
+  boundary falls *inside* a colspan cell is interrupted on that row —
+  CSS cannot draw a border through the middle of a merged cell (same
+  reason as partial cline + colspan below). The line still renders on
+  every other row. LaTeX draws it correctly because it operates on
+  column boundaries.
 - **Rowspan in the table header**: Pandoc does not honour `row_span`
   on cells inside `tbl.head`. When `quartable` detects a rowspan in
   the header, it moves the header rows into the first body so the

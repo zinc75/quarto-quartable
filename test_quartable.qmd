@@ -38,7 +38,7 @@ the rendered HTML / PDF / Reveal is itself a usage reference.
 | `[text]{rs=N}` + `^`                    | merge `N` consecutive rows (`^` marks the continuations)     |
 | `===`                                   | full-width horizontal separator (booktabs `\midrule`)        |
 | `===N-M`, `===N`, `===1,3-5,7`          | partial horizontal separator (booktabs `\cmidrule`)          |
-| `[text]{cs=N .vl .vr rspan=K}`          | vertical line(s) on a colspan boundary (LaTeX only)          |
+| `[text]{cs=N .vl .vr rspan=K}`          | vertical line(s) on a colspan boundary                       |
 | `[text]{align=l\|c\|r}`                 | per-cell alignment override (overrides Markdown col-spec)    |
 
 By design `quartable` does **not** draw an automatic head/body
@@ -397,7 +397,7 @@ body are separated by `===` midrules.
 
 {{< pagebreak >}}
 
-# Vlines (vertical lines, LaTeX only)
+# Vlines (vertical lines)
 
 Adding `.vl` and/or `.vr` to a cell draws a vertical line on that
 cell's left and/or right edge (or, for a colspan cell, on the
@@ -405,8 +405,9 @@ boundary of the merged span). By default the line spans the full
 table height; the optional `rspan=K` attribute limits it to the
 declaring row plus `K-1` rows below.
 
-> Note: `.vl`/`.vr` are LaTeX-only in v0.1. HTML and Reveal silently
-> ignore them.
+Vlines render in all three targets: LaTeX (column-spec / `\multicolumn`
+injection) and HTML/Reveal (per-cell `border-left`/`border-right` under
+`border-collapse`).
 
 ## Full-height vline (`.vr`)
 
