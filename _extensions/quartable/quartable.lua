@@ -1108,10 +1108,12 @@ function Table(tbl)
     local ok, latex_str = pcall(pandoc.write, doc, "latex")
 
     if ok and latex_str and latex_str ~= "" then
-      -- 3a. \multirow{N}{=} → \multirow{N}{*} (avoids overflow).
-      latex_str = latex_str:gsub("\\multirow{(%d+)}{=}", "\\multirow{%1}{*}")
+      -- 3a. \multirow{N}{=} → \multirow{N}{\linewidth} so that long text
+      --     wraps to the column width (Pandoc uses p{…} columns whose
+      --     \linewidth equals the computed column width).
+      latex_str = latex_str:gsub("\\multirow{(%d+)}{=}", "\\multirow{%1}{\\linewidth}")
       latex_str = latex_str:gsub("\\multirow%[([^%]]+)%]{(%d+)}{=}",
-                                 "\\multirow[%1]{%2}{*}")
+                                 "\\multirow[%1]{%2}{\\linewidth}")
 
       -- 3a'. Remove the \midrule that Pandoc inserts between <thead> and
       --      <tbody>. By design, quartable does not draw an automatic

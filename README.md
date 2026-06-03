@@ -206,8 +206,7 @@ welcome (see [CONTRIBUTING.md](CONTRIBUTING.md)).
 
 ## Limitations
 
-- **Vlines are LaTeX-only** in v0.1. HTML and Reveal silently ignore
-  them.
+- **Vlines are LaTeX-only.** HTML and Reveal silently ignore them.
 - **Rowspan in the table header**: Pandoc does not honour `row_span`
   on cells inside `tbl.head`. When `quartable` detects a rowspan in
   the header, it moves the header rows into the first body so the
