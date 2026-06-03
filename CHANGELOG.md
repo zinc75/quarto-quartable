@@ -9,6 +9,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 (nothing yet)
 
+## [0.2.0] — 2026-06-03
+
+### Fixed
+
+- **Rowspan text wrapping in PDF/LaTeX.** Long text inside a `rs=N` cell
+  now wraps to the column width, matching the behaviour of regular cells.
+  Root cause: Pandoc 3.x emits `\multirow{N}{=}{…}` which overflowed with
+  `l/c/r` columns; the previous workaround replaced `{=}` with `{*}` (natural
+  width), which also prevented wrapping. The specifier is now replaced with
+  `{\linewidth}`, using Pandoc's computed column width (`p{…}` columns).
+
 ## [0.1.0] — 2026-05-07
 
 Initial public release.
