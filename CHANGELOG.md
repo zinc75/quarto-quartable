@@ -9,6 +9,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 (nothing yet)
 
+## [0.3.1] — 2026-07-31
+
+### Fixed
+
+- **Crash on Pandoc 1.10.18+ (`bad argument #2 to 'setmetatable'`) when
+  splitting a table on `===`.** `clone_body()` duplicated a `TableBody`
+  via `setmetatable({}, getmetatable(body))`. Recent Pandoc versions
+  protect AST metatables (`__metatable = false`), so `getmetatable()`
+  returns `false` instead of a table or `nil`, which `setmetatable`
+  rejects. Now tries the `pandoc.TableBody()` constructor first, and
+  only falls back to the metatable-copy trick when it's actually a
+  table (older Pandoc without the constructor).
+
 ## [0.3.0] — 2026-06-03
 
 ### Added
